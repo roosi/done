@@ -1,0 +1,61 @@
+﻿<Page x:Class="done.Desktop.Pages.Page1"
+      x:Name="Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:p="clr-namespace:done.Desktop.Properties"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:converters="clr-namespace:done.Desktop.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+	Title="Page1">
+
+    <Page.Resources>
+        <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource ModernTouchPageLeftMargin}"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ModernTouchPageHeaderHeight}"></RowDefinition>
+            <RowDefinition Height="{StaticResource ModernTouchPageContentTopMargin}"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <Button x:Name="BackButton" DataContext="{Binding ElementName=Page}"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                Width="50" Height="50"
+                Style="{DynamicResource MetroCircleButtonStyle}"
+                Visibility="Collapsed"
+                Click="BackButton_Click">
+            <Rectangle Width="20"
+              Height="20">
+                <Rectangle.Fill>
+                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_left}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource ModernTouchTextPageHeaderStyle}" Margin="0,0,0,-8"
+                       Text="Page 1"/>
+        </Grid>
+        <!-- Content -->
+        <Grid Grid.Column="1" Grid.Row="2">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          CanContentScroll="False">
+                <StackPanel Orientation="Horizontal" Margin="0">
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+    </Grid>
+</Page>

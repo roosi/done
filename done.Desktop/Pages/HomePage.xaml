@@ -1,0 +1,298 @@
+﻿<Page x:Class="done.Desktop.Pages.HomePage"
+      x:Name="Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:p="clr-namespace:done.Desktop.Properties"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:converters="clr-namespace:done.Desktop.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+	Title="HomePage"
+      DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
+
+    <Page.Resources>
+        <ResourceDictionary>
+            <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Resources/Icons.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Page.Resources>
+    <Grid>       
+        <Grid.Resources>
+            <DataTemplate x:Key="TaskListTemplate">
+                <TextBlock Text="{Binding Title}"
+                           Margin="0,20,0,20"
+                           />
+            </DataTemplate>
+            <DataTemplate x:Key="TaskTemplate">
+                <Grid Width="300" Height="300" Margin="5" Background="WhiteSmoke">
+                    <Grid Width="40" HorizontalAlignment="Left" Background="Green"/>
+                    <StackPanel Margin="45,10,10,10">
+                        <TextBlock Text="{Binding Title}"
+                               Foreground="{StaticResource ModernTouchContrastBackgroundBrush}"
+                               Style="{StaticResource ModernTouchTextLargeStyle}"/>
+                        <TextBlock Text="{Binding DueDate}"
+                                   Style="{StaticResource ModernTouchTextSmallStyle}"/>
+                        <TextBlock Text="{Binding Notes}" 
+                                   Margin="0,20,0,0" Height="200"
+                                   TextWrapping="Wrap"
+                                   TextTrimming="WordEllipsis"
+                                   Style="{StaticResource ModernTouchTextNormalStyle}"></TextBlock>
+                    </StackPanel>
+                </Grid>
+            </DataTemplate>
+        </Grid.Resources>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource ModernTouchPageLeftMargin}"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ModernTouchPageHeaderHeight}"></RowDefinition>
+            <RowDefinition Height="{StaticResource ModernTouchPageContentTopMargin}"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Controls:ProgressIndicator Grid.Column="1" Width="1100" Height="12" 
+                                    HorizontalAlignment="Center" VerticalAlignment="Top"
+                                    ProgressColor="{StaticResource ModernTouchAccentBrush}"
+                                    Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
+        <!-- Header -->
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Style="{StaticResource ModernTouchTextPageHeaderStyle}"
+                           Text="{x:Static p:Resources.ApplicationTitle}"
+                           Margin="0,0,0,-8"/>
+                <TextBlock Style="{StaticResource ModernTouchTextSmallStyle}"
+                           Text="{x:Static p:Resources.PoweredByGoogle}"
+                           VerticalAlignment="Bottom" Margin="20,0,0,0"/>
+            </StackPanel>
+            <Button Grid.Column="1"
+                x:Name="InfoButton" DataContext="{Binding ElementName=Page}"
+                VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                Width="50" Height="50"
+                Style="{DynamicResource MetroCircleButtonStyle}"
+                Click="InfoButton_Click" Margin="{StaticResource ModernTouchHorizontalMargin}">
+                <Rectangle Width="20" Height="20">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_information}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+        </Grid>
+        <!-- Content -->
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <StackPanel Width="Auto" Margin="0,0,0,0">
+                <StackPanel Orientation="Horizontal">
+                    <Button VerticalAlignment="Center" 
+                                Width="50" Height="50"
+                                Style="{DynamicResource MetroCircleButtonStyle}"
+                                Margin="0,0,10,0">
+                        <Rectangle Width="20" Height="20">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
+                    <TextBlock Text="lists" VerticalAlignment="Center" 
+                                       Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
+                </StackPanel>
+                <ListBox ItemsSource="{Binding TaskLists}"
+                         ItemTemplate="{StaticResource TaskListTemplate}"
+                         SelectedItem="{Binding SelectedTaskList, Mode=TwoWay}"
+                         Background="Transparent" 
+                         FontFamily="{StaticResource ModernTouchFontFamilyNormal}"
+                         FontSize="{StaticResource ModernTouchFontSizeLarge}">
+                    <ListBox.Resources>
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Setter Property="Template">
+                                <Setter.Value>
+                                    <ControlTemplate TargetType="{x:Type ListBoxItem}">
+                                        <Border Name="Bd"
+                                                Background="{TemplateBinding Background}"
+                                                BorderBrush="{TemplateBinding BorderBrush}"
+                                                BorderThickness="{TemplateBinding BorderThickness}"
+                                                Padding="{TemplateBinding Padding}"
+                                                SnapsToDevicePixels="true">
+                                            <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                              SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                        </Border>
+                                        <ControlTemplate.Triggers>
+                                            <Trigger Property="IsSelected" Value="true">
+                                                <Setter TargetName="Bd"
+                                                        Property="Background"
+                                                        Value="Transparent"/>
+                                                <Setter Property="Foreground"
+                                                        Value="{StaticResource ModernTouchAccentBrush}"/>
+                                            </Trigger>
+                                            <Trigger Property="IsEnabled" Value="false">
+                                                <Setter Property="Foreground"
+                                                        Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                                            </Trigger>
+                                        </ControlTemplate.Triggers>
+                                    </ControlTemplate>
+                                </Setter.Value>
+                            </Setter>
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            </StackPanel>
+            <ScrollViewer Grid.Column="1" Margin="80,0,0,0"
+                HorizontalScrollBarVisibility="Auto"
+                          CanContentScroll="False">
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <StackPanel Width="Auto">
+                        <StackPanel Orientation="Horizontal">
+                            <Button VerticalAlignment="Center" 
+                                    Width="50" Height="50"
+                                    Style="{DynamicResource MetroCircleButtonStyle}"
+                                    Margin="0,0,10,0"
+                                    Command="{Binding SelectedTaskList.CreateTaskCommand}">
+                                <Rectangle Width="20" Height="20">
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Button>
+                            <TextBlock Text="tasks" VerticalAlignment="Center" 
+                                       Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
+                        </StackPanel>
+                        <ListBox x:Name="Tasks" Background="Transparent"
+                                 ItemsSource="{Binding SelectedTaskList.Tasks}"
+                                 ItemTemplate="{StaticResource TaskTemplate}"
+                                 SelectedItem="{Binding SelectedTaskList.SelectedTask, Mode=TwoWay}">
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <UniformGrid Columns="6" Rows="2"></UniformGrid>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                        </ListBox>
+                    </StackPanel>
+                    <StackPanel Width="Auto" Margin="40,0,0,0" Visibility="Collapsed">
+                        <TextBlock Text="Now" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid Margin="0">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Controls:Tile Background="Blue" Margin="5,0,5,5" Width="470" Height="310">
+                                    <TextBlock Style="{StaticResource ModernTouchTextContrastStyle}"
+                                               FontSize="{StaticResource ModernTouchFontSizeExtraExtraLarge}"
+                                               Text="Welcome"></TextBlock>
+                                </Controls:Tile>
+                                <Grid Grid.Row="1" Width="Auto" VerticalAlignment="Top">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Controls:Tile Grid.Column="0" Background="LightGreen" Margin="0,5,0,0" Width="150" Height="150">
+                                        <Button x:Name="Add1Button" DataContext="{Binding ElementName=Page}"
+                                        Width="60" Height="60"
+                                        Style="{DynamicResource MetroCircleButtonStyle}"
+                                        Margin="{StaticResource ModernTouchHorizontalMargin}">
+                                            <Rectangle Width="30" Height="30">
+                                                <Rectangle.Fill>
+                                                    <VisualBrush Stretch="Fill"
+                                                             Visual="{StaticResource appbar_arrow_right}" />
+                                                </Rectangle.Fill>
+                                            </Rectangle>
+                                        </Button>
+                                    </Controls:Tile>
+                                    <Controls:Tile Grid.Column="1" Background="LightGreen" Margin="5,5,5,0" Width="150" Height="150"></Controls:Tile>
+                                    <Controls:Tile Grid.Column="2" Background="LightGreen" Margin="0,5,0,0" Width="150" Height="150"></Controls:Tile>
+
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="1" Width="Auto" Height="Auto" VerticalAlignment="Top">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                    <RowDefinition Height="*"></RowDefinition>
+                                </Grid.RowDefinitions>
+                                <Controls:Tile Grid.Row="0" Background="Purple" Margin="5,0,0,5" Width="150" Height="150">
+                                    <Rectangle Width="80" Height="50">
+                                        <Rectangle.Resources>
+                                            <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                        </Rectangle.Resources>
+                                        <Rectangle.Fill>
+                                            <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_email}" />
+                                        </Rectangle.Fill>
+                                    </Rectangle>
+                                </Controls:Tile>
+                                <Controls:Tile Grid.Row="1" Background="Black" Margin="5,5,0,5" Width="150" Height="150">
+                                    <Button x:Name="AddButton" DataContext="{Binding ElementName=Page}"
+                                            Width="60" Height="60"
+                                            Foreground="White"
+                                            Style="{DynamicResource MetroCircleButtonStyle}"
+                                            Margin="{StaticResource ModernTouchHorizontalMargin}">
+                                        <Rectangle Width="30" Height="30">
+                                            <Rectangle.Resources>
+                                                <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                            </Rectangle.Resources>
+                                            <Rectangle.Fill>
+                                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
+                                            </Rectangle.Fill>
+                                        </Rectangle>
+                                    </Button>
+                                </Controls:Tile>
+                                <Controls:Tile Grid.Row="2" Background="Yellow" Margin="5,5,0,0" Width="150" Height="150"></Controls:Tile>
+                            </Grid>
+                        </Grid>
+                    </StackPanel>
+                    <StackPanel Margin="40,0,0,0" Width="250" Visibility="Collapsed">
+                        <TextBlock Text="Menu" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <ListBox Width="Auto" SelectionChanged="ListBox_SelectionChanged">
+                            <ListBoxItem Margin="0,10,0,10">
+                                <TextBlock Text="Page 1" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                            </ListBoxItem>
+                            <ListBoxItem Margin="0,10,0,10">
+                                <TextBlock Text="Page 2" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                            </ListBoxItem>
+                            <ListBoxItem Margin="0,10,0,10">
+                                <TextBlock Text="Page 3" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                            </ListBoxItem>
+                            <ListBoxItem Margin="0,10,0,10">
+                                <TextBlock Text="Page 4" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                            </ListBoxItem>
+                            <ListBoxItem Margin="0,10,0,10">
+                                <TextBlock Text="Page 5" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                            </ListBoxItem>
+                        </ListBox>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+        <!-- Footer -->
+        <Grid Grid.Column="1" Grid.Row="3">
+            <Button VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Width="50" Height="50" Margin="0,0,20,0"
+                    Style="{DynamicResource MetroCircleButtonStyle}"
+                    Command="{Binding GetTaskListsCommand}">
+                <Rectangle Width="20" Height="20">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_refresh}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
+        </Grid>
+    </Grid>
+</Page>

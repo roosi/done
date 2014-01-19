@@ -1,0 +1,119 @@
+﻿<Page x:Class="done.Desktop.Pages.AboutPage"
+      x:Name="Page"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:p="clr-namespace:done.Desktop.Properties"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:System="clr-namespace:System;assembly=mscorlib"
+      xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+      xmlns:converters="clr-namespace:done.Desktop.Converters"
+      mc:Ignorable="d" 
+      d:DesignHeight="768" d:DesignWidth="1366"
+	Title="AboutPage">
+
+    <Page.Resources>
+        <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+    </Page.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="{StaticResource ModernTouchPageLeftMargin}"></ColumnDefinition>
+            <ColumnDefinition Width="*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="{StaticResource ModernTouchPageHeaderHeight}"></RowDefinition>
+            <RowDefinition Height="{StaticResource ModernTouchPageContentTopMargin}"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <!--
+            <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
+            -->
+        </Grid.RowDefinitions>
+        <!-- Header -->
+        <Button x:Name="BackButton" DataContext="{Binding ElementName=Page}"
+                VerticalAlignment="Bottom" HorizontalAlignment="Center" 
+                Width="50" Height="50"
+                Style="{DynamicResource MetroCircleButtonStyle}"
+                Visibility="Visible"
+                Click="BackButton_Click">
+            <Rectangle Width="20"
+              Height="20">
+                <Rectangle.Fill>
+                    <VisualBrush Stretch="Fill"
+                    Visual="{StaticResource appbar_arrow_left}" />
+                </Rectangle.Fill>
+            </Rectangle>
+        </Button>
+        <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                <ColumnDefinition Width="Auto"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <TextBlock Style="{StaticResource ModernTouchTextPageHeaderStyle}"
+                       Margin="0,0,0,-8"
+                       Text="{x:Static p:Resources.AboutPageTitle}"/>
+        </Grid>
+        <!-- Content -->
+        <Grid Grid.Column="1" Grid.Row="2">
+            <ScrollViewer HorizontalScrollBarVisibility="Auto"
+                          CanContentScroll="False">
+                <StackPanel Orientation="Horizontal" Margin="0">
+                    <StackPanel Margin="0,0,0,0"  VerticalAlignment="Top">
+                        <TextBlock Text="{x:Static p:Resources.VersionTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <TextBlock Text="0.1" TextWrapping="Wrap" Margin="0,20,0,20"
+                                   VerticalAlignment="Top" HorizontalAlignment="Left"
+                                   Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
+                        <Image Source="/Resources/SplashScreen.png" Width="200"></Image>
+                        <Button Content="Check updates" FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                Style="{DynamicResource SquareButtonStyle}"></Button>
+                    </StackPanel>
+                    <StackPanel Margin="40,0,0,0"  VerticalAlignment="Top">
+                        <TextBlock Text="{x:Static p:Resources.HelpTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto">
+                            <TextBlock Width="700" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat nisl facilisis dui adipiscing, et pellentesque diam pharetra. Nullam vel mauris porta, auctor nulla luctus, mollis eros. Sed laoreet eget magna nec luctus. Ut blandit vehicula orci, ac pretium nibh mollis nec. Sed a tempus nibh, quis fermentum metus. Sed non sagittis ipsum, a posuere lectus. Mauris commodo magna nec neque porta, in fermentum arcu pellentesque. Duis vulputate velit a nisl laoreet, a gravida leo tincidunt. Cras interdum felis quis ligula fermentum convallis. Integer porta, tellus sit amet pellentesque scelerisque, nisl erat luctus sem, et viverra dolor tellus in erat. In eu dui lobortis, blandit mauris vitae, viverra neque. Fusce nibh lorem, mollis non tristique non, ultricies in lacus. Curabitur viverra nibh dui, non rutrum dui euismod volutpat. Praesent interdum suscipit ante sit amet mattis." 
+                                       Style="{StaticResource ModernTouchTextTitle2Style}" TextWrapping="Wrap"></TextBlock>
+                        </ScrollViewer>
+                    </StackPanel>
+                    <StackPanel Margin="40,0,0,0"  VerticalAlignment="Top">
+                        <TextBlock Text="{x:Static p:Resources.LicensesTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto">
+                            <RichTextBox Width="700" FontSize="{StaticResource ModernTouchFontSizeNormal}" BorderThickness="0">
+                                <FlowDocument>
+                                    <Paragraph>
+                                        MahApps.Metro and MahApps.Metro.Resources
+                                    </Paragraph>
+                                    <Paragraph>
+                                        Microsoft Public License (MS-PL)
+                                    </Paragraph>
+                                    <Paragraph>
+                                        [OSI Approved License]
+                                        This license governs use of the accompanying software. If you use the software, you
+                                        accept this license. If you do not accept the license, do not use the software.
+
+                                        1. Definitions
+                                        The terms "reproduce," "reproduction," "derivative works," and "distribution" have the
+                                        same meaning here as under U.S. copyright law.
+                                        A "contribution" is the original software, or any additions or changes to the software.
+                                        A "contributor" is any person that distributes its contribution under this license.
+                                        "Licensed patents" are a contributor's patent claims that read directly on its contribution.
+
+                                        2. Grant of Rights
+                                        (A) Copyright Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free copyright license to reproduce its contribution, prepare derivative works of its contribution, and distribute its contribution or any derivative works that you create.
+                                        (B) Patent Grant- Subject to the terms of this license, including the license conditions and limitations in section 3, each contributor grants you a non-exclusive, worldwide, royalty-free license under its licensed patents to make, have made, use, sell, offer for sale, import, and/or otherwise dispose of its contribution in the software or derivative works of the contribution in the software.
+
+                                        3. Conditions and Limitations
+                                        (A) No Trademark License- This license does not grant you rights to use any contributors' name, logo, or trademarks.
+                                        (B) If you bring a patent claim against any contributor over patents that you claim are infringed by the software, your patent license from such contributor to the software ends automatically.
+                                        (C) If you distribute any portion of the software, you must retain all copyright, patent, trademark, and attribution notices that are present in the software.
+                                        (D) If you distribute any portion of the software in source code form, you may do so only under this license by including a complete copy of this license with your distribution. If you distribute any portion of the software in compiled or object code form, you may only do so under a license that complies with this license.
+                                        (E) The software is licensed "as-is." You bear the risk of using it. The contributors give no express warranties, guarantees or conditions. You may have additional consumer rights under your local laws which this license cannot change. To the extent permitted under your local laws, the contributors exclude the implied warranties of merchantability, fitness for a particular purpose and non-infringement.
+                                    </Paragraph>
+                                </FlowDocument>
+                            </RichTextBox>                        
+                        </ScrollViewer>
+                    </StackPanel>
+                </StackPanel>
+            </ScrollViewer>
+        </Grid>
+
+    </Grid>
+</Page>

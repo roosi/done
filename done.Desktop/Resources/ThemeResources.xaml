@@ -1,0 +1,162 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+
+    <ResourceDictionary.MergedDictionaries>
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.DatePicker.xaml" />
+        <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.Calendar.xaml" />
+        <ResourceDictionary Source="/Resources/Icons.xaml"/>
+    </ResourceDictionary.MergedDictionaries>
+
+    <!-- Default margins for non-touch items -->
+    <Thickness x:Key="ModernTouchHorizontalMargin">20,0</Thickness>
+    <Thickness x:Key="ModernTouchVerticalMargin">0,20</Thickness>
+    <Thickness x:Key="ModernTouchMargin">20</Thickness>
+
+    <!-- Common colors -->
+
+    <!-- 100 percent White -->
+    <Color x:Key="ModernTouchBackgroundColor">#FFFFFFFF</Color>
+
+    <!-- 100 percent Black -->
+    <Color x:Key="ModernTouchForegroundColor">#FF000000</Color>
+
+    <!-- 100 percent Black -->
+    <Color x:Key="ModernTouchContrastBackgroundColor">#FF000000</Color>
+
+    <!-- 100 percent White -->
+    <Color x:Key="ModernTouchContrastForegroundColor">#FFFFFFFF</Color>
+
+    <!-- 40 percent White -->
+    <Color x:Key="ModernTouchDisabledColor">#66FFFFFF</Color>
+
+    <!-- 10 percent White -->
+    <Color x:Key="ModernTouchProgressBarBackgroundColor">#19FFFFFF</Color>
+
+    <Color x:Key="ModernTouchSubtleColor">#99000000</Color>
+
+    <SolidColorBrush x:Key="ModernTouchForegroundBrush" Color="{StaticResource ModernTouchForegroundColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchBackgroundBrush" Color="{StaticResource ModernTouchBackgroundColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchContrastForegroundBrush" Color="{StaticResource ModernTouchContrastForegroundColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchContrastBackgroundBrush" Color="{StaticResource ModernTouchContrastBackgroundColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchSubtleBrush" Color="{StaticResource ModernTouchSubtleColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchAccentBrush" Color="{StaticResource AccentColor}"/>
+
+    <SolidColorBrush x:Key="ModernTouchProgressBarBackgroundBrush" Color="{StaticResource ModernTouchProgressBarBackgroundColor}"/>
+
+    <!-- Font names -->
+    <FontFamily x:Key="ModernTouchFontFamilyNormal">Segoe UI</FontFamily>
+    <FontFamily x:Key="ModernTouchFontFamilyLight">Segoe UI Light</FontFamily>
+    <FontFamily x:Key="ModernTouchFontFamilySemiLight">Segoe UI SemiLight</FontFamily>
+    <FontFamily x:Key="ModernTouchFontFamilySemiBold">Segoe UI Semibold</FontFamily>
+    <FontFamily x:Key="ModernTouchFontFamilyBold">Segoe UI Bold</FontFamily>
+
+    <!-- Font sizes -->
+
+    <!--14pt-->
+    <System:Double x:Key="ModernTouchFontSizeSmall">18.667</System:Double>
+    <!--15pt-->
+    <System:Double x:Key="ModernTouchFontSizeNormal">20</System:Double>
+    <!--17pt-->
+    <System:Double x:Key="ModernTouchFontSizeMedium">22.667</System:Double>
+    <!--19pt-->
+    <System:Double x:Key="ModernTouchFontSizeMediumLarge">25.333</System:Double>
+    <!--24pt-->
+    <System:Double x:Key="ModernTouchFontSizeLarge">32</System:Double>
+    <!--32pt-->
+    <System:Double x:Key="ModernTouchFontSizeExtraLarge">42.667</System:Double>
+    <!--54pt-->
+    <System:Double x:Key="ModernTouchFontSizeExtraExtraLarge">72</System:Double>
+    <!--140pt-->
+    <System:Double x:Key="ModernTouchFontSizeHuge">186.667</System:Double>
+
+    <!-- TextBlock styles -->
+
+    <Style x:Key="ModernTouchTextBlockBase" TargetType="TextBlock">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilyNormal}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeNormal}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextNormalStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}" />
+
+    <Style x:Key="ModernTouchTextSubtleStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchSubtleBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextTitle1Style" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeExtraExtraLarge}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextTitle2Style" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeLarge}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextTitle3Style" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeMedium}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextExtraLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeExtraLarge}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextGroupHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeLarge}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchSubtleBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextLargeStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeLarge}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextSmallStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeSmall}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchSubtleBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextContrastStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchContrastForegroundBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextAccentStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilySemiBold}"/>
+        <Setter Property="Foreground" Value="{StaticResource ModernTouchAccentBrush}"/>
+    </Style>
+
+    <Style x:Key="ModernTouchTextHugeStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilyLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizeHuge}"/>
+    </Style>
+    
+    <!-- Own styles -->
+    <System:Double x:Key="ModernTouchFontSizePageHeader">50</System:Double>
+    
+    <GridLength x:Key="ModernTouchPageLeftMargin">120</GridLength>
+    <GridLength x:Key="ModernTouchPageHeaderHeight">100</GridLength>
+    <GridLength x:Key="ModernTouchPageBottonMargin">100</GridLength>
+    <GridLength x:Key="ModernTouchPageContentTopMargin">40</GridLength>
+
+    <Style x:Key="ModernTouchTextPageHeaderStyle" TargetType="TextBlock" BasedOn="{StaticResource ModernTouchTextBlockBase}">
+        <Setter Property="FontFamily" Value="{StaticResource ModernTouchFontFamilyLight}"/>
+        <Setter Property="FontSize" Value="{StaticResource ModernTouchFontSizePageHeader}"/>
+        <Setter Property="VerticalAlignment" Value="Bottom"/>
+        <Setter Property="Margin" Value="0"/>
+    </Style>
+</ResourceDictionary>
