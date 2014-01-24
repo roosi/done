@@ -16,6 +16,7 @@
     <Page.Resources>
         <ResourceDictionary>
             <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+            <converters:StatusBrushConverter x:Key="StatusBrushConverter"/>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="/Resources/Icons.xaml" />
             </ResourceDictionary.MergedDictionaries>
@@ -25,24 +26,35 @@
         <Grid.Resources>
             <DataTemplate x:Key="TaskListTemplate">
                 <TextBlock Text="{Binding Title}"
-                           Margin="0,20,0,20"
-                           />
+                           Margin="0,20,0,20"/>
             </DataTemplate>
             <DataTemplate x:Key="TaskTemplate">
                 <Grid Width="300" Height="300" Margin="5" Background="WhiteSmoke">
-                    <Grid Width="40" HorizontalAlignment="Left" Background="Green"/>
+                    <Grid Width="40" HorizontalAlignment="Left" Background="{Binding Converter={StaticResource StatusBrushConverter}}"/>
                     <StackPanel Margin="45,10,10,10">
                         <TextBlock Text="{Binding Title}"
                                Foreground="{StaticResource ModernTouchContrastBackgroundBrush}"
                                Style="{StaticResource ModernTouchTextLargeStyle}"/>
-                        <TextBlock Text="{Binding DueDate}"
+                        <TextBlock Text="{Binding DueDate, StringFormat=dd.MM.yyyy}"
                                    Style="{StaticResource ModernTouchTextSmallStyle}"/>
                         <TextBlock Text="{Binding Notes}" 
                                    Margin="0,20,0,0" Height="200"
                                    TextWrapping="Wrap"
                                    TextTrimming="WordEllipsis"
-                                   Style="{StaticResource ModernTouchTextNormalStyle}"></TextBlock>
+                                   Style="{StaticResource ModernTouchTextNormalStyle}"/>
                     </StackPanel>
+                    <Button  VerticalAlignment="Bottom" HorizontalAlignment="Right" 
+                             Width="50" Height="50"
+                             Style="{DynamicResource MetroCircleButtonStyle}"
+                             Margin="10,10,10,10"
+                             Command="{Binding CompleteTaskCommamd}"
+                             Visibility="{Binding IsCompleted, Converter={StaticResource VisibilityConverter}, ConverterParameter=Invert }">
+                        <Rectangle Width="20" Height="20">
+                            <Rectangle.Fill>
+                                <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_check}" />
+                            </Rectangle.Fill>
+                        </Rectangle>
+                    </Button>
                 </Grid>
             </DataTemplate>
         </Grid.Resources>
@@ -175,7 +187,7 @@
                                  SelectedItem="{Binding SelectedTaskList.SelectedTask, Mode=TwoWay}">
                             <ListBox.ItemsPanel>
                                 <ItemsPanelTemplate>
-                                    <UniformGrid Columns="6" Rows="2"></UniformGrid>
+                                    <UniformGrid Columns="3"></UniformGrid>
                                 </ItemsPanelTemplate>
                             </ListBox.ItemsPanel>
                         </ListBox>

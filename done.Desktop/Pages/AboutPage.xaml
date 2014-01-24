@@ -58,7 +58,7 @@
                           CanContentScroll="False">
                 <StackPanel Orientation="Horizontal" Margin="0">
                     <StackPanel Margin="0,0,0,0"  VerticalAlignment="Top">
-                        <TextBlock Text="{x:Static p:Resources.VersionTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <TextBlock Text="{x:Static p:Resources.VersionTitle}" Style="{StaticResource ModernTouchTextExtraLargeStyle}"></TextBlock>
                         <TextBlock Text="0.1" TextWrapping="Wrap" Margin="0,20,0,20"
                                    VerticalAlignment="Top" HorizontalAlignment="Left"
                                    Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
@@ -67,14 +67,14 @@
                                 Style="{DynamicResource SquareButtonStyle}"></Button>
                     </StackPanel>
                     <StackPanel Margin="40,0,0,0"  VerticalAlignment="Top">
-                        <TextBlock Text="{x:Static p:Resources.HelpTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <TextBlock Text="{x:Static p:Resources.HelpTitle}" Style="{StaticResource ModernTouchTextExtraLargeStyle}"></TextBlock>
                         <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto">
                             <TextBlock Width="700" Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi feugiat nisl facilisis dui adipiscing, et pellentesque diam pharetra. Nullam vel mauris porta, auctor nulla luctus, mollis eros. Sed laoreet eget magna nec luctus. Ut blandit vehicula orci, ac pretium nibh mollis nec. Sed a tempus nibh, quis fermentum metus. Sed non sagittis ipsum, a posuere lectus. Mauris commodo magna nec neque porta, in fermentum arcu pellentesque. Duis vulputate velit a nisl laoreet, a gravida leo tincidunt. Cras interdum felis quis ligula fermentum convallis. Integer porta, tellus sit amet pellentesque scelerisque, nisl erat luctus sem, et viverra dolor tellus in erat. In eu dui lobortis, blandit mauris vitae, viverra neque. Fusce nibh lorem, mollis non tristique non, ultricies in lacus. Curabitur viverra nibh dui, non rutrum dui euismod volutpat. Praesent interdum suscipit ante sit amet mattis." 
                                        Style="{StaticResource ModernTouchTextTitle2Style}" TextWrapping="Wrap"></TextBlock>
                         </ScrollViewer>
                     </StackPanel>
                     <StackPanel Margin="40,0,0,0"  VerticalAlignment="Top">
-                        <TextBlock Text="{x:Static p:Resources.LicensesTitle}" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
+                        <TextBlock Text="{x:Static p:Resources.LicensesTitle}" Style="{StaticResource ModernTouchTextExtraLargeStyle}"></TextBlock>
                         <ScrollViewer Height="600" VerticalScrollBarVisibility="Auto">
                             <RichTextBox Width="700" FontSize="{StaticResource ModernTouchFontSizeNormal}" BorderThickness="0">
                                 <FlowDocument>

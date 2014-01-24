@@ -15,6 +15,7 @@
 
     <Page.Resources>
         <converters:VisibilityConverter x:Key="VisibilityConverter"/>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -65,18 +66,25 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBox Text="{Binding Title, Mode=TwoWay}" Width="300" Margin="0,0,0,20"
-                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"/>
-                            <TextBox Text="{Binding Status, Mode=TwoWay}" Width="300" Margin="0,0,0,20"
-                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"/>
+                            <TextBox Text="{Binding Title, Mode=TwoWay}" Width="400" Margin="0,0,0,20"
+                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                     Controls:TextboxHelper.Watermark="{x:Static p:Resources.Title}"
+                                     IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
+                            <ComboBox AllowDrop="True" Width="400" Margin="0,0,0,20"
+                                      FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                      ItemsSource="{Binding Statuses}"
+                                      SelectedItem="{Binding Status, Mode=TwoWay}">
+                            </ComboBox>
                             <DatePicker SelectedDate="{Binding DueDate, Mode=TwoWay}" Margin="0,0,0,20"
-                                        FontSize="{StaticResource ModernTouchFontSizeNormal}"/>
+                                        FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                        IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Margin="80,0,0,0">
-                            <TextBox Text="{Binding Notes}" Width="400" Height="300"
+                            <TextBox Text="{Binding Notes, Mode=TwoWay}" Width="500" Height="400"
                                      TextWrapping="Wrap"
-                                     Controls:TextboxHelper.Watermark="write your notes here"
-                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"></TextBox>
+                                     Controls:TextboxHelper.Watermark="{x:Static p:Resources.WriteYourNotesHere}"
+                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                     IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
                         </StackPanel>
                     </Grid>
                 </StackPanel>
@@ -88,7 +96,7 @@
                     HorizontalAlignment="Right"
                     Width="50" Height="50" Margin="0,0,20,0"
                     Style="{DynamicResource MetroCircleButtonStyle}"
-                    Command="{Binding GetTaskListsCommand}">
+                    Command="{Binding UpdateTaskCommand}">
                 <Rectangle Width="20" Height="20">
                     <Rectangle.Fill>
                         <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_save}" />

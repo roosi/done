@@ -109,7 +109,7 @@ namespace done.Shared.ViewModels
             _tasks.Clear();
             foreach (Task task in result.Items)
             {
-                Tasks.Add(new TaskViewModel(task, _dataService, _navigationService));
+                Tasks.Add(new TaskViewModel(task, _model.Id ,_dataService, _navigationService));
             }
 #if DEBUG
             if (IsInDesignMode)
@@ -143,11 +143,15 @@ namespace done.Shared.ViewModels
             }
         }
 
-        private void ExecuteCreateTaskCommand()
+        private async void ExecuteCreateTaskCommand()
         {
-            TaskViewModel newTask = new TaskViewModel(
-                new Task() { Title = string.Empty },
-                _dataService, _navigationService);
+            Task task = new Task() { Title = string.Empty };
+
+            IsLoading = true;
+            task = await _dataService.CreateTaskAsync(task, _model.Id);
+            IsLoading = false;
+
+            TaskViewModel newTask = new TaskViewModel(task, _model.Id, _dataService, _navigationService);
             Tasks.Insert(0, newTask);
         }
 

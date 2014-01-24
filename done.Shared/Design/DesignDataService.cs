@@ -34,5 +34,17 @@ namespace done.Shared.Design
                 new Task() { Title = "My Private Task 10", Notes = "Mauris consectetur lectus vel tellus hendrerit tempor." }
             } };
         }
+
+
+        public System.Threading.Tasks.Task<Task> CreateTaskAsync(Task task, string listId)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public System.Threading.Tasks.Task<Task> UpdateTaskAsync(Task task, string listId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

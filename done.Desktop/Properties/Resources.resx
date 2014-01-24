@@ -141,10 +141,16 @@
   <data name="PoweredByGoogle" xml:space="preserve">
     <value>powered by Google</value>
   </data>
+  <data name="Title" xml:space="preserve">
+    <value>title</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>username</value>
   </data>
   <data name="VersionTitle" xml:space="preserve">
     <value>version</value>
+  </data>
+  <data name="WriteYourNotesHere" xml:space="preserve">
+    <value>write your notes here</value>
   </data>
 </root>

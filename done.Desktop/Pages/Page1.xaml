@@ -47,13 +47,14 @@
                 <ColumnDefinition Width="Auto"></ColumnDefinition>
             </Grid.ColumnDefinitions>
             <TextBlock Style="{StaticResource ModernTouchTextPageHeaderStyle}" Margin="0,0,0,-8"
-                       Text="Page 1"/>
+                       Text="page title"/>
         </Grid>
         <!-- Content -->
         <Grid Grid.Column="1" Grid.Row="2">
             <ScrollViewer HorizontalScrollBarVisibility="Auto"
                           CanContentScroll="False">
                 <StackPanel Orientation="Horizontal" Margin="0">
+                    <TextBlock Text="subtitle" Style="{StaticResource ModernTouchTextExtraLargeStyle}"></TextBlock>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

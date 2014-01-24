@@ -133,6 +133,15 @@ namespace done.Desktop.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to title.
+        /// </summary>
+        public static string Title {
+            get {
+                return ResourceManager.GetString("Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to username.
         /// </summary>
         public static string Username {
@@ -147,6 +156,15 @@ namespace done.Desktop.Properties {
         public static string VersionTitle {
             get {
                 return ResourceManager.GetString("VersionTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to write your notes here.
+        /// </summary>
+        public static string WriteYourNotesHere {
+            get {
+                return ResourceManager.GetString("WriteYourNotesHere", resourceCulture);
             }
         }
     }

@@ -48,5 +48,30 @@ namespace done.Shared.Model
             }
             return await _service.Tasks.List(listId).ExecuteAsync();
         }
+
+
+        public async System.Threading.Tasks.Task<Task> CreateTaskAsync(Task task, string listId)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+            return await _service.Tasks.Insert(task, listId).ExecuteAsync();
+        }
+
+
+        public async System.Threading.Tasks.Task<Task> UpdateTaskAsync(Task task, string listId)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+            if (task.Status.Equals("needsAction"))
+            {
+                task.Completed = null;
+            }
+
+            return await _service.Tasks.Update(task, listId, task.Id).ExecuteAsync();
+        }
     }
 }

@@ -14,5 +14,8 @@ namespace done.Shared.Services
 
         Task<TaskLists> GetTaskListsAsync();
         Task<Tasks> GetTasksAsync(string listId);
+
+        Task<Google.Apis.Tasks.v1.Data.Task> CreateTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);
+        Task<Google.Apis.Tasks.v1.Data.Task> UpdateTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);
     }
 }

@@ -9,6 +9,12 @@
                 <ResourceDictionary Source="/Resources/ThemeResources.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <vm:DesktopViewModelLocator x:Key="Locator" />
+
+            <Brush x:Key="StatusNew">#d3d3d3</Brush>
+            <Brush x:Key="StatusDue">#ff0000</Brush>
+            <Brush x:Key="StatusDueClosing">#ffa500</Brush>
+            <Brush x:Key="StatusCompleted">#008000</Brush>
+            <Brush x:Key="StatusNeedsAction">#00bfff</Brush>
         </ResourceDictionary>        
     </Application.Resources>
 </Application>
