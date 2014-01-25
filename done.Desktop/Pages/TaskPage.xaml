@@ -92,6 +92,18 @@
         </Grid>
         <!-- Footer -->
         <Grid Grid.Column="1" Grid.Row="3">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button VerticalAlignment="Center"
+                    HorizontalAlignment="Right"
+                    Width="50" Height="50" Margin="0,0,20,0"
+                    Style="{DynamicResource MetroCircleButtonStyle}"
+                    Command="{Binding DeleteTaskCommand}">
+                <Rectangle Width="20" Height="20">
+                    <Rectangle.Fill>
+                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_delete}" />
+                    </Rectangle.Fill>
+                </Rectangle>
+            </Button>
             <Button VerticalAlignment="Center"
                     HorizontalAlignment="Right"
                     Width="50" Height="50" Margin="0,0,20,0"
@@ -103,6 +115,7 @@
                     </Rectangle.Fill>
                 </Rectangle>
             </Button>
+            </StackPanel>
         </Grid>
     </Grid>
 </Page>

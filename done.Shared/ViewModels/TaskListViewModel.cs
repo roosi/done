@@ -1,4 +1,5 @@
-﻿using done.Shared.Services;
+﻿using done.Shared.Messages;
+using done.Shared.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Google.Apis.Tasks.v1.Data;
@@ -23,6 +24,11 @@ namespace done.Shared.ViewModels
             : base(dataService, navigationService)
         {
             _model = model;
+
+            MessengerInstance.Register<TaskDeletedMessage>(this, message =>
+                {
+                    Tasks.Remove(message.Content);
+                });
         }
 
         public string Title 

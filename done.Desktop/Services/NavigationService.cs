@@ -34,5 +34,11 @@ namespace done.Desktop.Services
         {
             ((Frame)App.Current.MainWindow.Content).GoBack();
         }
+
+
+        public bool CanGoBack()
+        {
+            return ((Frame)App.Current.MainWindow.Content).CanGoBack;
+        }
     }
 }

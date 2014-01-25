@@ -1,4 +1,5 @@
-﻿using done.Shared.Services;
+﻿using done.Shared.Messages;
+using done.Shared.Services;
 using GalaSoft.MvvmLight.Command;
 using Google.Apis.Tasks.v1.Data;
 using System;
@@ -268,6 +269,46 @@ namespace done.Shared.ViewModels
         private bool CanExecuteCompleteTaskCommamd()
         {
             return IsCompleted == false;
+        }
+
+        private RelayCommand _deleteTaskCommand;
+
+        /// <summary>
+        /// Gets the DeleteTaskCommand.
+        /// </summary>
+        public RelayCommand DeleteTaskCommand
+        {
+            get
+            {
+                return _deleteTaskCommand ?? (_deleteTaskCommand = new RelayCommand(
+                    ExecuteDeleteTaskCommand,
+                    CanExecuteDeleteTaskCommand));
+            }
+        }
+
+        private async void ExecuteDeleteTaskCommand()
+        {
+            IsLoading = true;
+            string result = await _dataService.DeleteTaskAsync(_model, _listId);
+            IsLoading = false;
+
+            if (string.IsNullOrEmpty(result))
+            {
+                MessengerInstance.Send<TaskDeletedMessage>(new TaskDeletedMessage(this));
+                if (_navigationService.CanGoBack())
+                {
+                    _navigationService.GoBack();
+                }
+            }
+            else
+            { 
+                //TODO
+            }
+        }
+
+        private bool CanExecuteDeleteTaskCommand()
+        {
+            return true;
         }
     }
 }

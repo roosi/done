@@ -73,5 +73,15 @@ namespace done.Shared.Model
 
             return await _service.Tasks.Update(task, listId, task.Id).ExecuteAsync();
         }
+
+        public async System.Threading.Tasks.Task<string> DeleteTaskAsync(Task task, string listId)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+
+            return await _service.Tasks.Delete(listId, task.Id).ExecuteAsync();
+        }
     }
 }

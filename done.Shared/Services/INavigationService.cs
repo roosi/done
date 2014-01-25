@@ -9,5 +9,6 @@ namespace done.Shared.Services
     {
         void Navigate(Type viewModelType);
         void GoBack();
+        bool CanGoBack();
     }
 }
