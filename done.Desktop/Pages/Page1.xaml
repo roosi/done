@@ -26,6 +26,11 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
         </Grid.RowDefinitions>
+        <Controls:MetroProgressBar Grid.Column="1" Width="1100" Height="10" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   IsIndeterminate="True" EllipseDiameter="10"
+                                   Foreground="{StaticResource ModernTouchAccentBrush}"
+                                   Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Header -->
         <Button x:Name="BackButton" DataContext="{Binding ElementName=Page}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" 

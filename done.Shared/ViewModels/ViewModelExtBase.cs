@@ -13,14 +13,16 @@ namespace done.Shared.ViewModels
     {
         protected IDataService _dataService;
         protected INavigationService _navigationService;
+        protected IDialogService _dialogService;
 
         /// <summary>
         /// Initializes a new instance of the ViewModelExtBase class.
         /// </summary>
-        public ViewModelExtBase(IDataService dataService, INavigationService navigationService)
+        public ViewModelExtBase(IDataService dataService, INavigationService navigationService, IDialogService dialogService)
         {
             _dataService = dataService;
             _navigationService = navigationService;
+            _dialogService = dialogService;
         }
 
         /// <summary>

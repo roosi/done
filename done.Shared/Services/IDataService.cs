@@ -13,6 +13,8 @@ namespace done.Shared.Services
         void SetUserCredential(UserCredential credential);
 
         Task<TaskLists> GetTaskListsAsync();
+        Task<TaskList> CreateTaskListAsync(string title);
+
         Task<Tasks> GetTasksAsync(string listId);
 
         Task<Google.Apis.Tasks.v1.Data.Task> CreateTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);

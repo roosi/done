@@ -18,7 +18,6 @@ namespace done.Shared.Model
 
         public DataService()
         { 
-
         }
 
         public void SetUserCredential(UserCredential credential)
@@ -39,6 +38,14 @@ namespace done.Shared.Model
             return await _service.Tasklists.List().ExecuteAsync();
         }
 
+        public async System.Threading.Tasks.Task<TaskList> CreateTaskListAsync(string title)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+            return await _service.Tasklists.Insert(new TaskList() { Title = title }).ExecuteAsync();
+        }
 
         public async System.Threading.Tasks.Task<Tasks> GetTasksAsync(string listId)
         {

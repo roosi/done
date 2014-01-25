@@ -25,8 +25,8 @@ namespace done.Shared.ViewModels
         /// <summary>
         /// Initializes a new instance of the TaskViewModel class.
         /// </summary>
-        public TaskViewModel(Task model, string listId, IDataService dataService, INavigationService navigationService)
-            : base(dataService, navigationService)
+        public TaskViewModel(Task model, string listId, IDataService dataService, INavigationService navigationService, IDialogService dialogService)
+            : base(dataService, navigationService, dialogService)
         {
             _model = model;
             _listId = listId;
@@ -37,7 +37,7 @@ namespace done.Shared.ViewModels
         {
             Title = _model.Title;
             Status = _model.Status;
-            DueDate = _model.Due.Value;
+            DueDate = _model.Due != null ? _model.Due.Value : DateTime.Today;
             Notes = _model.Notes;
         }
 
@@ -291,21 +291,25 @@ namespace done.Shared.ViewModels
 
         private async void ExecuteDeleteTaskCommand()
         {
-            IsLoading = true;
-            string result = await _dataService.DeleteTaskAsync(_model, _listId);
-            IsLoading = false;
-
-            if (string.IsNullOrEmpty(result))
+            MessageResult result = await _dialogService.ShowMessageAsync("Do you want to delete the task permanently?", "Delete task", MessageButton.OKCancel);
+            if (result == MessageResult.OK)
             {
-                MessengerInstance.Send<TaskDeletedMessage>(new TaskDeletedMessage(this));
-                if (_navigationService.CanGoBack())
+                IsLoading = true;
+                string response = await _dataService.DeleteTaskAsync(_model, _listId);
+                IsLoading = false;
+
+                if (string.IsNullOrEmpty(response))
                 {
-                    _navigationService.GoBack();
+                    MessengerInstance.Send<TaskDeletedMessage>(new TaskDeletedMessage(this));
+                    if (_navigationService.CanGoBack())
+                    {
+                        _navigationService.GoBack();
+                    }
                 }
-            }
-            else
-            { 
-                //TODO
+                else
+                {
+                    await _dialogService.ShowMessageAsync(response, "Error", MessageButton.OK);
+                }
             }
         }
 

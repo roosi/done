@@ -62,5 +62,11 @@ namespace done.Shared.Design
         {
             throw new NotImplementedException();
         }
+
+
+        public System.Threading.Tasks.Task<TaskList> CreateTaskListAsync(string title)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

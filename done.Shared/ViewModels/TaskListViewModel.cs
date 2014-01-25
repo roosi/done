@@ -21,8 +21,8 @@ namespace done.Shared.ViewModels
         /// <summary>
         /// Initializes a new instance of the TaskListViewModel class.
         /// </summary>
-        public TaskListViewModel(TaskList model, IDataService dataService, INavigationService navigationService)
-            : base(dataService, navigationService)
+        public TaskListViewModel(TaskList model, IDataService dataService, INavigationService navigationService, IDialogService dialogService)
+            : base(dataService, navigationService, dialogService)
         {
             _model = model;
 
@@ -206,27 +206,42 @@ namespace done.Shared.ViewModels
             var result = await _dataService.GetTasksAsync(_model.Id);
 
             _tasks.Clear();
-            foreach (Task task in result.Items)
+            NbrOfCompleted = 0;
+            NbrOfDue = 0;
+            NbrOfDueClosing = 0;
+            NbrOfNeedsAction = 0;
+
+            if (result.Items != null)
             {
-                Tasks.Add(new TaskViewModel(task, _model.Id ,_dataService, _navigationService));
-                if (task.Status.Equals(TaskViewModel.StatusNeedsAction))
+                foreach (Task task in result.Items)
                 {
-                    if (task.Due.Value.Ticks <= DateTime.Today.Ticks)
+                    Tasks.Add(new TaskViewModel(task, _model.Id, _dataService, _navigationService, _dialogService));
+                    if (task.Status.Equals(TaskViewModel.StatusNeedsAction))
                     {
-                        NbrOfDue = _nbrOfDue + 1;
+                        if (task.Due != null)
+                        {
+                            if (task.Due.Value.Ticks <= DateTime.Today.Ticks)
+                            {
+                                NbrOfDue = _nbrOfDue + 1;
+                            }
+                            else if (task.Due.Value.AddDays(-1).Ticks <= DateTime.Today.Ticks)
+                            {
+                                NbrOfDueClosing = _nbrOfDueClosing + 1;
+                            }
+                            else
+                            {
+                                NbrOfNeedsAction = _nbrOfNeedsAction + 1;
+                            }
+                        }
+                        else
+                        {
+                            NbrOfNeedsAction = _nbrOfNeedsAction + 1;
+                        }
                     }
-                    else if (task.Due.Value.AddDays(-1).Ticks <= DateTime.Today.Ticks)
+                    else if (task.Status.Equals(TaskViewModel.StatusCompleted))
                     {
-                        NbrOfDueClosing = _nbrOfDueClosing + 1;
+                        NbrOfCompleted = _nbrOfCompleted + 1;
                     }
-                    else
-                    {
-                        NbrOfNeedsAction = _nbrOfNeedsAction + 1;
-                    }
-                }
-                else if (task.Status.Equals(TaskViewModel.StatusCompleted))
-                {
-                    NbrOfCompleted = _nbrOfCompleted + 1;
                 }
             }
 #if DEBUG
@@ -269,7 +284,7 @@ namespace done.Shared.ViewModels
             task = await _dataService.CreateTaskAsync(task, _model.Id);
             IsLoading = false;
 
-            TaskViewModel newTask = new TaskViewModel(task, _model.Id, _dataService, _navigationService);
+            TaskViewModel newTask = new TaskViewModel(task, _model.Id, _dataService, _navigationService, _dialogService);
             Tasks.Insert(0, newTask);
         }
 

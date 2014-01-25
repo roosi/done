@@ -35,6 +35,7 @@ namespace done.Desktop.ViewModels
             Init();
 
             SimpleIoc.Default.Register<INavigationService, NavigationService>();
+            SimpleIoc.Default.Register<IDialogService, ModernDialogService>();
         }
     }
 }

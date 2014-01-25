@@ -16,8 +16,8 @@ namespace done.Shared.ViewModels
         /// <summary>
         /// Initializes a new instance of the TaskListsViewModel class.
         /// </summary>
-        public TaskListsViewModel(IDataService dataService, INavigationService navigationService)
-            : base(dataService, navigationService)
+        public TaskListsViewModel(IDataService dataService, INavigationService navigationService, IDialogService dialogService)
+            : base(dataService, navigationService, dialogService)
         {
 #if DEBUG
             if (IsInDesignMode)
@@ -102,7 +102,7 @@ namespace done.Shared.ViewModels
             _taskLists.Clear();
             foreach (TaskList list in result.Items)
             {
-                TaskLists.Add(new TaskListViewModel(list, _dataService, _navigationService));
+                TaskLists.Add(new TaskListViewModel(list, _dataService, _navigationService, _dialogService));
             }
             if (_taskLists.Count > 0)
             {
@@ -116,6 +116,58 @@ namespace done.Shared.ViewModels
         private bool CanExecuteGetTaskListsCommand()
         {
             return IsLoading == false;
+        }
+
+        /// <summary>
+        /// The <see cref="NewTaskListTitle" /> property's name.
+        /// </summary>
+        public const string NewTaskListTitlePropertyName = "NewTaskListTitle";
+
+        private string _newTaskListTitle = string.Empty;
+
+        /// <summary>
+        /// Sets and gets the NewTaskListTitle property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public string NewTaskListTitle
+        {
+            get
+            {
+                return _newTaskListTitle;
+            }
+            set
+            {
+                Set(NewTaskListTitlePropertyName, ref _newTaskListTitle, value);
+            }
+        }
+
+        private RelayCommand _createTaskListCommand;
+
+        /// <summary>
+        /// Gets the CreateTaskListCommnad.
+        /// </summary>
+        public RelayCommand CreateTaskListCommand
+        {
+            get
+            {
+                return _createTaskListCommand ?? (_createTaskListCommand = new RelayCommand(
+                    ExecuteCreateTaskListCommnad,
+                    CanExecuteCreateTaskListCommnad));
+            }
+        }
+
+        private async void ExecuteCreateTaskListCommnad()
+        {
+            IsLoading = true;
+            TaskList taskList = await _dataService.CreateTaskListAsync(NewTaskListTitle);
+            IsLoading = false;
+            TaskLists.Add(new TaskListViewModel(taskList, _dataService, _navigationService, _dialogService));
+            NewTaskListTitle = string.Empty;
+        }
+
+        private bool CanExecuteCreateTaskListCommnad()
+        {
+            return IsLoading == false && string.IsNullOrEmpty(_newTaskListTitle) == false;
         }
     }
 }

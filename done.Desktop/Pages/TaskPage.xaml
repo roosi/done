@@ -28,10 +28,11 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
         </Grid.RowDefinitions>
-        <Controls:ProgressIndicator Grid.Column="1" Width="1100" Height="12" 
-                                    HorizontalAlignment="Center" VerticalAlignment="Top"
-                                    ProgressColor="{StaticResource ModernTouchAccentBrush}"
-                                    Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
+        <Controls:MetroProgressBar Grid.Column="1" Width="1100" Height="10" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   IsIndeterminate="True" EllipseDiameter="10"
+                                   Foreground="{StaticResource ModernTouchAccentBrush}"
+                                   Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Header -->
         <Button x:Name="BackButton" DataContext="{Binding ElementName=Page}"
                 VerticalAlignment="Bottom" HorizontalAlignment="Center" 
@@ -66,7 +67,7 @@
                             <ColumnDefinition Width="*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <StackPanel>
-                            <TextBox Text="{Binding Title, Mode=TwoWay}" Width="400" Margin="0,0,0,20"
+                            <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" Margin="0,0,0,20"
                                      FontSize="{StaticResource ModernTouchFontSizeNormal}"
                                      Controls:TextboxHelper.Watermark="{x:Static p:Resources.Title}"
                                      IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
@@ -80,7 +81,7 @@
                                         IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
                         </StackPanel>
                         <StackPanel Grid.Column="1" Margin="80,0,0,0">
-                            <TextBox Text="{Binding Notes, Mode=TwoWay}" Width="500" Height="400"
+                            <TextBox Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="500" Height="400"
                                      TextWrapping="Wrap"
                                      Controls:TextboxHelper.Watermark="{x:Static p:Resources.WriteYourNotesHere}"
                                      FontSize="{StaticResource ModernTouchFontSizeNormal}"

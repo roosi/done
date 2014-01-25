@@ -10,7 +10,7 @@
       xmlns:converters="clr-namespace:done.Desktop.Converters"
       mc:Ignorable="d" 
       d:DesignHeight="768" d:DesignWidth="1366"
-	Title="HomePage"
+	  Title="HomePage"
       DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
 
     <Page.Resources>
@@ -29,7 +29,7 @@
                            Margin="0,20,0,20"/>
             </DataTemplate>
             <DataTemplate x:Key="TaskTemplate">
-                <Grid Width="300" Height="300" Margin="0,10,0,10" Background="WhiteSmoke">
+                <Grid Width="300" Height="300" Margin="0,10,10,10" Background="WhiteSmoke">
                     <Grid Width="40" HorizontalAlignment="Left" Background="{Binding Converter={StaticResource StatusBrushConverter}}"/>
                     <StackPanel Margin="45,10,10,10">
                         <TextBlock Text="{Binding Title}"
@@ -68,10 +68,11 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="{StaticResource ModernTouchPageBottonMargin}"></RowDefinition>
         </Grid.RowDefinitions>
-        <Controls:ProgressIndicator Grid.Column="1" Width="1100" Height="12" 
-                                    HorizontalAlignment="Center" VerticalAlignment="Top"
-                                    ProgressColor="{StaticResource ModernTouchAccentBrush}"
-                                    Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
+        <Controls:MetroProgressBar Grid.Column="1" Width="1100" Height="10" 
+                                   HorizontalAlignment="Center" VerticalAlignment="Top"
+                                   IsIndeterminate="True" EllipseDiameter="10"
+                                   Foreground="{StaticResource ModernTouchAccentBrush}"
+                                   Visibility="{Binding IsLoading, Converter={StaticResource VisibilityConverter}}"/>
         <!-- Header -->
         <Grid Grid.Column="1">
             <Grid.ColumnDefinitions>
@@ -107,10 +108,12 @@
             </Grid.ColumnDefinitions>
             <StackPanel Width="Auto" Margin="0,0,0,0">
                 <StackPanel Orientation="Horizontal">
-                    <Button VerticalAlignment="Center" 
-                                Width="50" Height="50"
-                                Style="{DynamicResource MetroCircleButtonStyle}"
-                                Margin="0,0,10,0">
+                    <Button x:Name="CreateTaskListButton" 
+                            VerticalAlignment="Center" 
+                            Width="50" Height="50"
+                            Style="{DynamicResource MetroCircleButtonStyle}"
+                            Margin="0,0,10,0"
+                            Click="CreateTaskListButton_Click">
                         <Rectangle Width="20" Height="20">
                             <Rectangle.Fill>
                                 <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_add}" />
@@ -165,11 +168,9 @@
                 HorizontalScrollBarVisibility="Auto"
                           CanContentScroll="False">
                 <StackPanel Orientation="Horizontal" Margin="0">
-                    <StackPanel Width="Auto">
-                        <TextBlock Text="now" VerticalAlignment="Center" 
-                                   Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
+                    <StackPanel Width="Auto" Margin="0,65,0,0">
                         <Controls:Tile Background="{StaticResource StatusDue}"
-                                       Width="150" Height="150" Margin="0,10,0,10"
+                                       Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfDue, Converter={StaticResource VisibilityConverter}}">
                             <TextBlock Text="{Binding SelectedTaskList.NbrOfDue}"
                                        FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
@@ -214,7 +215,7 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
                             </Button>
-                            <TextBlock Text="all tasks" VerticalAlignment="Center" 
+                            <TextBlock Text="tasks" VerticalAlignment="Center" 
                                        Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
                         </StackPanel>
                         <ListBox x:Name="Tasks" Background="Transparent"

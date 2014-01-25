@@ -1,4 +1,5 @@
 ﻿using done.Shared.ViewModels;
+using MahApps.Metro.Controls;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -68,6 +69,17 @@ namespace done.Desktop.Pages
             NavigationService.Navigate(new Uri("/Pages/Page1.xaml", UriKind.Relative));
 
             tasks.SelectedIndex = -1;
+        }
+
+        private void CreateTaskListButton_Click(object sender, RoutedEventArgs e)
+        {
+            var flyout = ((MetroWindow)(App.Current.MainWindow)).Flyouts.Items[0] as Flyout;
+            if (flyout == null)
+            {
+                return;
+            }
+
+            flyout.IsOpen = !flyout.IsOpen;
         }
     }
 }

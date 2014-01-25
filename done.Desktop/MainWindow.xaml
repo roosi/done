@@ -1,12 +1,36 @@
 ﻿<Controls:MetroWindow x:Class="done.Desktop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:p="clr-namespace:done.Desktop.Properties"
         xmlns:Controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
+        xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+        xmlns:cmd="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
         Title="MainWindow" Height="350" Width="525"
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize"
-        ShowTitleBar="False">
+        ShowTitleBar="False"
+        DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
     <Frame x:Name="WindowFrame"
            NavigationUIVisibility="Hidden"
            Source="/Pages/HomePage.xaml"/>
+    
+    <Controls:MetroWindow.Flyouts>
+        <Controls:FlyoutsControl>
+            <Controls:Flyout Header="New task list" Position="Right">
+                <StackPanel Width="300" Margin="10,20,10,20">
+                    <TextBox Controls:TextboxHelper.Watermark="Title" Margin="10,10,10,20"
+                             FontFamily="{StaticResource ModernTouchFontFamilyNormal}"
+                             FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                             Text="{Binding NewTaskListTitle, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                    </TextBox>
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                        <Button Content="OK" Margin="10" Width="100"
+                                FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                Foreground="Black" Style="{DynamicResource MetroFlatButton}"
+                                Command="{Binding CreateTaskListCommand}"/>
+                    </StackPanel>
+                </StackPanel>
+            </Controls:Flyout>
+        </Controls:FlyoutsControl>
+    </Controls:MetroWindow.Flyouts>
 </Controls:MetroWindow>

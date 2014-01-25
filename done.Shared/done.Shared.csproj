@@ -38,6 +38,7 @@
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\IDataService.cs" />
+    <Compile Include="Services\IDialogService.cs" />
     <Compile Include="Services\INavigationService.cs" />
     <Compile Include="ViewModels\TaskListsViewModel.cs" />
     <Compile Include="ViewModels\TaskListViewModel.cs" />
