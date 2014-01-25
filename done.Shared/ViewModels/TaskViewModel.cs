@@ -37,7 +37,7 @@ namespace done.Shared.ViewModels
         {
             Title = _model.Title;
             Status = _model.Status;
-            DueDate = _model.Due != null ? _model.Due.Value : DateTime.Today;
+            DueDate = _model.Due.Value;
             Notes = _model.Notes;
         }
 
@@ -45,7 +45,7 @@ namespace done.Shared.ViewModels
         {
             _model.Title = _title;
             _model.Status = _status;
-            _model.Due = _dueDate != null ? _dueDate : DateTime.Today;
+            _model.Due = _dueDate;
             _model.Notes = _notes;
         }
 
@@ -139,7 +139,10 @@ namespace done.Shared.ViewModels
             {
                 if (IsEdited = Set(StatusPropertyName, ref _status, value))
                 {
-                    IsCompleted = _status.Equals(StatusCompleted);
+                    if (_status != null)
+                    {
+                        IsCompleted = _status.Equals(StatusCompleted);
+                    }
                 }
             }
         }

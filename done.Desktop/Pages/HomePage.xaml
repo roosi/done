@@ -29,7 +29,7 @@
                            Margin="0,20,0,20"/>
             </DataTemplate>
             <DataTemplate x:Key="TaskTemplate">
-                <Grid Width="300" Height="300" Margin="5" Background="WhiteSmoke">
+                <Grid Width="300" Height="300" Margin="0,10,0,10" Background="WhiteSmoke">
                     <Grid Width="40" HorizontalAlignment="Left" Background="{Binding Converter={StaticResource StatusBrushConverter}}"/>
                     <StackPanel Margin="45,10,10,10">
                         <TextBlock Text="{Binding Title}"
@@ -166,6 +166,42 @@
                           CanContentScroll="False">
                 <StackPanel Orientation="Horizontal" Margin="0">
                     <StackPanel Width="Auto">
+                        <TextBlock Text="now" VerticalAlignment="Center" 
+                                   Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
+                        <Controls:Tile Background="{StaticResource StatusDue}"
+                                       Width="150" Height="150" Margin="0,10,0,10"
+                                       Visibility="{Binding SelectedTaskList.NbrOfDue, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedTaskList.NbrOfDue}"
+                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                       Foreground="White"></TextBlock>
+                        </Controls:Tile>
+                        <Controls:Tile Background="{StaticResource StatusDueClosing}"
+                                       Width="150" Height="150" Margin="0,0,0,10"
+                                       Visibility="{Binding SelectedTaskList.NbrOfDueClosing, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedTaskList.NbrOfDueClosing}"
+                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                       Foreground="White"></TextBlock>
+                        </Controls:Tile>
+                        <Controls:Tile Background="{StaticResource StatusNeedsAction}"
+                                       Width="150" Height="150" Margin="0,0,0,10"
+                                       Visibility="{Binding SelectedTaskList.NbrOfNeedsAction, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedTaskList.NbrOfNeedsAction}"
+                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                       Foreground="White"/>
+                        </Controls:Tile>
+                        <Controls:Tile Background="{StaticResource StatusCompleted}"
+                                       Width="150" Height="150" Margin="0,0,0,10"
+                                       Visibility="{Binding SelectedTaskList.NbrOfCompleted, Converter={StaticResource VisibilityConverter}}">
+                            <TextBlock Text="{Binding SelectedTaskList.NbrOfCompleted}"
+                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                       Foreground="White"/>
+                        </Controls:Tile>
+                    </StackPanel>
+                    <StackPanel Width="Auto" Margin="40,0,0,0">
                         <StackPanel Orientation="Horizontal">
                             <Button VerticalAlignment="Center" 
                                     Width="50" Height="50"
@@ -178,7 +214,7 @@
                                     </Rectangle.Fill>
                                 </Rectangle>
                             </Button>
-                            <TextBlock Text="tasks" VerticalAlignment="Center" 
+                            <TextBlock Text="all tasks" VerticalAlignment="Center" 
                                        Style="{StaticResource ModernTouchTextExtraLargeStyle}"/>
                         </StackPanel>
                         <ListBox x:Name="Tasks" Background="Transparent"

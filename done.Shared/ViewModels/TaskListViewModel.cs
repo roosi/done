@@ -3,6 +3,7 @@ using done.Shared.Services;
 using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Google.Apis.Tasks.v1.Data;
+using System;
 using System.Collections.ObjectModel;
 
 namespace done.Shared.ViewModels
@@ -91,6 +92,98 @@ namespace done.Shared.ViewModels
             }
         }
 
+        /// <summary>
+        /// The <see cref="NbrOfCompleted" /> property's name.
+        /// </summary>
+        public const string NbrOfCompletedPropertyName = "NbrOfCompleted";
+
+        private int _nbrOfCompleted = 0;
+
+        /// <summary>
+        /// Sets and gets the NbrOfCompleted property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public int NbrOfCompleted
+        {
+            get
+            {
+                return _nbrOfCompleted;
+            }
+            set
+            {
+                Set(NbrOfCompletedPropertyName, ref _nbrOfCompleted, value);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="NbrOfActionsNeeded" /> property's name.
+        /// </summary>
+        public const string NbrOfNeedsActionPropertyName = "NbrOfNeedsAction";
+
+        private int _nbrOfNeedsAction = 0;
+
+        /// <summary>
+        /// Sets and gets the NbrOfNeedsAction property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public int NbrOfNeedsAction
+        {
+            get
+            {
+                return _nbrOfNeedsAction;
+            }
+            set
+            {
+                Set(NbrOfNeedsActionPropertyName, ref _nbrOfNeedsAction, value);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="NbrOfDue" /> property's name.
+        /// </summary>
+        public const string NbrOfDuePropertyName = "NbrOfDue";
+
+        private int _nbrOfDue = 0;
+
+        /// <summary>
+        /// Sets and gets the NbrOfDue property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public int NbrOfDue
+        {
+            get
+            {
+                return _nbrOfDue;
+            }
+            set
+            {
+                Set(NbrOfDuePropertyName, ref _nbrOfDue, value);
+            }
+        }
+
+        /// <summary>
+        /// The <see cref="NbrOfDueClosing" /> property's name.
+        /// </summary>
+        public const string NbrOfDueClosingPropertyName = "NbrOfDueClosing";
+
+        private int _nbrOfDueClosing = 0;
+
+        /// <summary>
+        /// Sets and gets the NbrOfDueClosing property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public int NbrOfDueClosing
+        {
+            get
+            {
+                return _nbrOfDueClosing;
+            }
+            set
+            {
+                Set(NbrOfDueClosingPropertyName, ref _nbrOfDueClosing, value);
+            }
+        }
+
         private RelayCommand _getTasksCommand;
 
         /// <summary>
@@ -116,6 +209,25 @@ namespace done.Shared.ViewModels
             foreach (Task task in result.Items)
             {
                 Tasks.Add(new TaskViewModel(task, _model.Id ,_dataService, _navigationService));
+                if (task.Status.Equals(TaskViewModel.StatusNeedsAction))
+                {
+                    if (task.Due.Value.Ticks <= DateTime.Today.Ticks)
+                    {
+                        NbrOfDue = _nbrOfDue + 1;
+                    }
+                    else if (task.Due.Value.AddDays(-1).Ticks <= DateTime.Today.Ticks)
+                    {
+                        NbrOfDueClosing = _nbrOfDueClosing + 1;
+                    }
+                    else
+                    {
+                        NbrOfNeedsAction = _nbrOfNeedsAction + 1;
+                    }
+                }
+                else if (task.Status.Equals(TaskViewModel.StatusCompleted))
+                {
+                    NbrOfCompleted = _nbrOfCompleted + 1;
+                }
             }
 #if DEBUG
             if (IsInDesignMode)
