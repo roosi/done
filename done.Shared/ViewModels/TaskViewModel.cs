@@ -268,6 +268,7 @@ namespace done.Shared.ViewModels
 
             IsLoading = false;
             IsEdited = false;
+            MessengerInstance.Send<TaskUpdatedMessage>(new TaskUpdatedMessage(this));
         }
 
         private bool CanExecuteUpdateTaskCommand()

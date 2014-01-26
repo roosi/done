@@ -34,6 +34,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Design\DesignDataService.cs" />
+    <Compile Include="Messages\TaskUpdatedMessage.cs" />
     <Compile Include="Messages\TaskDeletedMessage.cs" />
     <Compile Include="Model\DataService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -29,6 +29,11 @@ namespace done.Shared.ViewModels
             MessengerInstance.Register<TaskDeletedMessage>(this, message =>
                 {
                     Tasks.Remove(message.Content);
+                    updateCounters();
+                });
+            MessengerInstance.Register<TaskUpdatedMessage>(this, message =>
+                {
+                    updateCounters();
                 });
         }
 
@@ -257,6 +262,47 @@ namespace done.Shared.ViewModels
             _getTasksCommand.RaiseCanExecuteChanged();
         }
 
+        private void updateCounters()
+        {
+            NbrOfCompleted = 0;
+            NbrOfDue = 0;
+            NbrOfDueClosing = 0;
+            NbrOfNeedsAction = 0;
+
+            if (_tasks != null)
+            {
+                foreach (TaskViewModel task in _tasks)
+                {
+                    if (task.Status.Equals(TaskViewModel.StatusNeedsAction))
+                    {
+                        if (task.DueDate != null)
+                        {
+                            if (task.DueDate.Ticks <= DateTime.Today.Ticks)
+                            {
+                                NbrOfDue = _nbrOfDue + 1;
+                            }
+                            else if (task.DueDate.AddDays(-1).Ticks <= DateTime.Today.Ticks)
+                            {
+                                NbrOfDueClosing = _nbrOfDueClosing + 1;
+                            }
+                            else
+                            {
+                                NbrOfNeedsAction = _nbrOfNeedsAction + 1;
+                            }
+                        }
+                        else
+                        {
+                            NbrOfNeedsAction = _nbrOfNeedsAction + 1;
+                        }
+                    }
+                    else if (task.Status.Equals(TaskViewModel.StatusCompleted))
+                    {
+                        NbrOfCompleted = _nbrOfCompleted + 1;
+                    }
+                }
+            }
+        }
+
         private bool CanExecuteGetTasksCommand()
         {
             return IsLoading == false;
@@ -287,6 +333,7 @@ namespace done.Shared.ViewModels
 
             TaskViewModel newTask = new TaskViewModel(task, _model.Id, _dataService, _navigationService, _dialogService);
             Tasks.Insert(0, newTask);
+            updateCounters();
             SelectedTask = newTask;
         }
 
