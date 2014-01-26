@@ -153,7 +153,7 @@ namespace done.Shared.ViewModels
         /// </summary>
         public const string StatusesPropertyName = "Statuses";
 
-        private ObservableCollection<string> _statuses = new ObservableCollection<string> { StatusNew, StatusNeedsAction, StatusCompleted };
+        private ObservableCollection<string> _statuses = new ObservableCollection<string> { StatusNeedsAction, StatusCompleted };
 
         /// <summary>
         /// Sets and gets the Statuses property.
@@ -273,7 +273,7 @@ namespace done.Shared.ViewModels
 
         private bool CanExecuteUpdateTaskCommand()
         {
-            return IsEdited && IsCompleted == false;
+            return IsEdited;
         }
 
         private RelayCommand _completeTaskCommand;
