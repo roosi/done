@@ -199,34 +199,74 @@
                         <Controls:Tile Background="{StaticResource StatusDue}"
                                        Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfDue, Converter={StaticResource VisibilityConverter}}">
-                            <TextBlock Text="{Binding SelectedTaskList.NbrOfDue}"
-                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
-                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
-                                       Foreground="White"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="25" Height="25" Margin="0,5,5,0">
+                                    <Rectangle.Resources>
+                                        <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                    </Rectangle.Resources>
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_smiley_angry}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock Text="{Binding SelectedTaskList.NbrOfDue}"
+                                           FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                           FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                           Foreground="White"></TextBlock>
+                            </StackPanel>
                         </Controls:Tile>
                         <Controls:Tile Background="{StaticResource StatusDueClosing}"
                                        Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfDueClosing, Converter={StaticResource VisibilityConverter}}">
-                            <TextBlock Text="{Binding SelectedTaskList.NbrOfDueClosing}"
-                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
-                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
-                                       Foreground="White"></TextBlock>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="25" Height="25" Margin="0,5,5,0">
+                                    <Rectangle.Resources>
+                                        <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                    </Rectangle.Resources>
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_smiley_frown}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock Text="{Binding SelectedTaskList.NbrOfDueClosing}"
+                                           FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                           FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                           Foreground="White"></TextBlock>
+                            </StackPanel>
                         </Controls:Tile>
                         <Controls:Tile Background="{StaticResource StatusNeedsAction}"
                                        Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfNeedsAction, Converter={StaticResource VisibilityConverter}}">
-                            <TextBlock Text="{Binding SelectedTaskList.NbrOfNeedsAction}"
-                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
-                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
-                                       Foreground="White"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="25" Height="25" Margin="0,5,5,0">
+                                    <Rectangle.Resources>
+                                        <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                    </Rectangle.Resources>
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_smiley_tounge}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock Text="{Binding SelectedTaskList.NbrOfNeedsAction}"
+                                           FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                           FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                           Foreground="White"></TextBlock>
+                            </StackPanel>
                         </Controls:Tile>
                         <Controls:Tile Background="{StaticResource StatusCompleted}"
                                        Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfCompleted, Converter={StaticResource VisibilityConverter}}">
-                            <TextBlock Text="{Binding SelectedTaskList.NbrOfCompleted}"
-                                       FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
-                                       FontSize="{StaticResource ModernTouchFontSizeLarge}"
-                                       Foreground="White"/>
+                            <StackPanel Orientation="Horizontal">
+                                <Rectangle Width="25" Height="25" Margin="0,5,5,0">
+                                    <Rectangle.Resources>
+                                        <SolidColorBrush x:Key="BlackBrush" Color="White" />
+                                    </Rectangle.Resources>
+                                    <Rectangle.Fill>
+                                        <VisualBrush Stretch="Fill" Visual="{StaticResource appbar_smiley_happy}"/>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                                <TextBlock Text="{Binding SelectedTaskList.NbrOfCompleted}"
+                                           FontFamily="{StaticResource ModernTouchFontFamilySemiBold}"
+                                           FontSize="{StaticResource ModernTouchFontSizeLarge}"
+                                           Foreground="White"></TextBlock>
+                            </StackPanel>
                         </Controls:Tile>
                     </StackPanel>
                     <StackPanel Width="Auto" Margin="40,0,0,0">
