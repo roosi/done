@@ -11,11 +11,11 @@ namespace done.Desktop.Converters
 {
     public class StatusBrushConverter : IValueConverter
     {
-        public Brush NewBrush = (Brush)App.Current.Resources["StatusNew"];
-        public Brush NeedsActionBrush = (Brush)App.Current.Resources["StatusNeedsAction"];
-        public Brush CompletedBrush = (Brush)App.Current.Resources["StatusCompleted"];
-        public Brush StatusDueBrush = (Brush)App.Current.Resources["StatusDue"];
-        public Brush StatusDueClosingBrush = (Brush)App.Current.Resources["StatusDueClosing"];
+        public SolidColorBrush NewBrush = (SolidColorBrush)App.Current.Resources["StatusNew"];
+        public SolidColorBrush NeedsActionBrush = (SolidColorBrush)App.Current.Resources["StatusNeedsAction"];
+        public SolidColorBrush CompletedBrush = (SolidColorBrush)App.Current.Resources["StatusCompleted"];
+        public SolidColorBrush StatusDueBrush = (SolidColorBrush)App.Current.Resources["StatusDue"];
+        public SolidColorBrush StatusDueClosingBrush = (SolidColorBrush)App.Current.Resources["StatusDueClosing"];
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {

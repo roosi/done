@@ -16,6 +16,7 @@
     <Page.Resources>
         <converters:VisibilityConverter x:Key="VisibilityConverter"/>
         <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
+        <converters:StatusBrushConverter x:Key="StatusBrushConverter"/>
     </Page.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -65,21 +66,36 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <StackPanel>
-                            <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" Margin="0,0,0,20"
-                                     FontSize="{StaticResource ModernTouchFontSizeNormal}"
-                                     Controls:TextboxHelper.Watermark="{x:Static p:Resources.Title}"
-                                     IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
-                            <ComboBox AllowDrop="True" Width="400" Margin="0,0,0,20"
-                                      FontSize="{StaticResource ModernTouchFontSizeNormal}"
-                                      ItemsSource="{Binding Statuses}"
-                                      SelectedItem="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
-                            </ComboBox>
-                            <DatePicker SelectedDate="{Binding DueDate, Mode=TwoWay}" Margin="0,0,0,20"
+                        </Grid.ColumnDefinitions>                        
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"></RowDefinition>
+                                <RowDefinition Height="100"></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <StackPanel>
+                                <TextBox Text="{Binding Title, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="400" Margin="0,0,0,20"
                                         FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                        Controls:TextboxHelper.Watermark="{x:Static p:Resources.Title}"
                                         IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
-                        </StackPanel>
+                                <ComboBox AllowDrop="True" Width="400" Margin="0,0,0,20"
+                                            FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                            ItemsSource="{Binding Statuses}"
+                                            SelectedItem="{Binding Status, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}">
+                                </ComboBox>
+                                <DatePicker SelectedDate="{Binding DueDate, Mode=TwoWay}" Margin="0,0,0,20"
+                                                FontSize="{StaticResource ModernTouchFontSizeNormal}"
+                                                IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
+                            </StackPanel>
+                            <Polygon Grid.Row="1" 
+                                     Points="0,0 0,100 100,100 0,0"
+                                     HorizontalAlignment="Left"
+                                     VerticalAlignment="Bottom"
+                                     StrokeThickness="0"
+                                     Stroke="Transparent"
+                                     Fill="{Binding StatusInformation, Converter={StaticResource StatusBrushConverter}}">
+                            </Polygon>
+                        </Grid>
+
                         <StackPanel Grid.Column="1" Margin="80,0,0,0">
                             <TextBox Text="{Binding Notes, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" Width="500" Height="400"
                                      TextWrapping="Wrap"
