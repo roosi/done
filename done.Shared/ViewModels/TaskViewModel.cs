@@ -37,7 +37,7 @@ namespace done.Shared.ViewModels
         {
             Title = _model.Title;
             Status = _model.Status;
-            DueDate = _model.Due != null ? _model.Due.Value : DateTime.Today;
+            DueDate = _model.Due != null ? _model.Due.Value : DateTime.Today.ToLocalTime();
             Notes = _model.Notes;
         }
 
@@ -45,7 +45,7 @@ namespace done.Shared.ViewModels
         {
             _model.Title = _title;
             _model.Status = _status;
-            _model.Due = _dueDate;
+            _model.Due = _dueDate.ToLocalTime();
             _model.Notes = _notes;
         }
 
