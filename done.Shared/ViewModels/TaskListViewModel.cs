@@ -254,6 +254,7 @@ namespace done.Shared.ViewModels
             }
 #endif
             IsLoading = false;
+            _getTasksCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanExecuteGetTasksCommand()
