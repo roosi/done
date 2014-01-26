@@ -37,6 +37,14 @@ namespace done.Shared.ViewModels
                 });
         }
 
+        public string Id
+        {
+            get
+            {
+                return _model.Id;
+            }
+        }
+
         public string Title 
         { 
             get 

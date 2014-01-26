@@ -68,5 +68,11 @@ namespace done.Shared.Design
         {
             throw new NotImplementedException();
         }
+
+
+        public System.Threading.Tasks.Task<string> DeleteTaskListAsync(string id)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

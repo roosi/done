@@ -47,6 +47,15 @@ namespace done.Shared.Model
             return await _service.Tasklists.Insert(new TaskList() { Title = title }).ExecuteAsync();
         }
 
+        public async System.Threading.Tasks.Task<string> DeleteTaskListAsync(string id)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+            return await _service.Tasklists.Delete(id).ExecuteAsync();
+        }
+
         public async System.Threading.Tasks.Task<Tasks> GetTasksAsync(string listId)
         {
             if (_service == null)

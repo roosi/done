@@ -169,5 +169,83 @@ namespace done.Shared.ViewModels
         {
             return IsLoading == false && string.IsNullOrEmpty(_newTaskListTitle) == false;
         }
+
+        /// <summary>
+        /// The <see cref="EditMode" /> property's name.
+        /// </summary>
+        public const string EditModePropertyName = "EditMode";
+
+        private bool _editMode = false;
+
+        /// <summary>
+        /// Sets and gets the EditMode property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool EditMode
+        {
+            get
+            {
+                return _editMode;
+            }
+            set
+            {
+                Set(EditModePropertyName, ref _editMode, value);
+            }
+        }
+
+        private RelayCommand<TaskListViewModel> _deleteTaskListCommand;
+
+        /// <summary>
+        /// Gets the DeleteTaskListCommand.
+        /// </summary>
+        public RelayCommand<TaskListViewModel> DeleteTaskListCommand
+        {
+            get
+            {
+                return _deleteTaskListCommand ?? (_deleteTaskListCommand = new RelayCommand<TaskListViewModel>(
+                    ExecuteDeleteTaskListCommand,
+                    CanExecuteDeleteTaskListCommand));
+            }
+        }
+
+        private async void ExecuteDeleteTaskListCommand(TaskListViewModel parameter)
+        {
+            MessageResult result = await _dialogService.ShowMessageAsync("Do you want to delete the task list permanently?", "Delete task list", MessageButton.OKCancel);
+            if (result == MessageResult.OK)
+            {
+                IsLoading = true;
+                string response = await _dataService.DeleteTaskListAsync(parameter.Id);
+                IsLoading = false;
+
+                if (string.IsNullOrEmpty(response))
+                {
+
+                    if (SelectedTaskList.Equals(parameter) && TaskLists.Count > 0)
+                    {
+                        int index = TaskLists.IndexOf(parameter);
+                        TaskLists.Remove(parameter);
+                        if (index > 0)
+                        {
+                            index--;
+                        }
+                        SelectedTaskList = TaskLists[index];
+                    }
+                    else
+                    {
+                        TaskLists.Remove(parameter);
+                    }
+                    
+                }
+                else
+                {
+                    await _dialogService.ShowMessageAsync(response, "Error", MessageButton.OK);
+                }
+            }
+        }
+
+        private bool CanExecuteDeleteTaskListCommand(TaskListViewModel parameter)
+        {
+            return _editMode == true && IsLoading == false;
+        }
     }
 }

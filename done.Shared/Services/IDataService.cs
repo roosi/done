@@ -14,6 +14,7 @@ namespace done.Shared.Services
 
         Task<TaskLists> GetTaskListsAsync();
         Task<TaskList> CreateTaskListAsync(string title);
+        Task<string> DeleteTaskListAsync(string id);
 
         Task<Tasks> GetTasksAsync(string listId);
 
