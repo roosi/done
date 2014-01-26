@@ -26,6 +26,11 @@ namespace done.Shared.ViewModels
         {
             _model = model;
 
+            _nbrOfCompleted = 0;
+            _nbrOfDue = 0;
+            _nbrOfDueClosing = 0;
+            _nbrOfNeedsAction = 0;
+
             MessengerInstance.Register<TaskDeletedMessage>(this, message =>
                 {
                     Tasks.Remove(message.Content);

@@ -9,6 +9,7 @@
         WindowStartupLocation="CenterScreen"
         WindowState="Maximized" WindowStyle="None" ResizeMode="NoResize"
         ShowTitleBar="False"
+        Icon="/Resources/done_128x128.ico"
         DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
     <Frame x:Name="WindowFrame"
            NavigationUIVisibility="Hidden"

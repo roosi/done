@@ -23,6 +23,14 @@ namespace done.Desktop.Pages
         public AboutPage()
         {
             InitializeComponent();
+
+            System.Reflection.Assembly assembly = System.Reflection.Assembly.GetExecutingAssembly();
+
+            Version version = assembly.GetName().Version;
+
+            ApplicationName.Text = assembly.GetName().Name;
+            ApplicationVersion.Text = "v. " + assembly.GetName().Version.ToString();
+
             Loaded += AboutPage_Loaded;
         }
 
