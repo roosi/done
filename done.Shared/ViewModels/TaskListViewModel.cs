@@ -287,6 +287,7 @@ namespace done.Shared.ViewModels
 
             TaskViewModel newTask = new TaskViewModel(task, _model.Id, _dataService, _navigationService, _dialogService);
             Tasks.Insert(0, newTask);
+            SelectedTask = newTask;
         }
 
         private bool CanExecuteCreateTaskCommand()

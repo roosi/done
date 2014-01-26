@@ -143,6 +143,7 @@ namespace done.Shared.ViewModels
                     {
                         IsCompleted = _status.Equals(StatusCompleted);
                     }
+                    RaisePropertyChanged(StatusInformationPropertyName);
                 }
             }
         }
@@ -189,7 +190,33 @@ namespace done.Shared.ViewModels
             }
             set
             {
-                IsEdited = Set(DueDatePropertyName, ref _dueDate, value);
+                if (IsEdited = Set(DueDatePropertyName, ref _dueDate, value))
+                {
+                    RaisePropertyChanged(StatusInformationPropertyName);
+                }
+            }
+        }
+
+        public class StatusInfo
+        {
+            public string Status;
+            public DateTime DueDate;
+        }
+
+        /// <summary>
+        /// The <see cref="StatusInformation" /> property's name.
+        /// </summary>
+        public const string StatusInformationPropertyName = "StatusInformation";
+
+        /// <summary>
+        /// Gets the StatusInfo property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public StatusInfo StatusInformation
+        {
+            get
+            {
+                return new StatusInfo() { DueDate = _dueDate, Status = _status };
             }
         }
 
@@ -265,7 +292,7 @@ namespace done.Shared.ViewModels
 
         private void ExecuteCompleteTaskCommamd()
         {
-            _status = StatusCompleted;
+            Status = StatusCompleted;
             ExecuteUpdateTaskCommand();
         }
 

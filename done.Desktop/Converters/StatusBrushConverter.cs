@@ -19,20 +19,20 @@ namespace done.Desktop.Converters
 
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            TaskViewModel task = value as TaskViewModel;
-            if (task.Status.Equals(TaskViewModel.StatusNeedsAction))
+            TaskViewModel.StatusInfo info = value as TaskViewModel.StatusInfo;
+            if (info.Status.Equals(TaskViewModel.StatusNeedsAction))
             {
-                if (task.DueDate.Ticks <= DateTime.Today.Ticks)
+                if (info.DueDate.Ticks <= DateTime.Today.Ticks)
                 {
                     return StatusDueBrush;
                 }
-                else if (task.DueDate.AddDays(-1).Ticks <= DateTime.Today.Ticks)
+                else if (info.DueDate.AddDays(-1).Ticks <= DateTime.Today.Ticks)
                 {
                     return StatusDueClosingBrush;
                 }
                 return NeedsActionBrush;
             }
-            else if (task.Status.Equals(TaskViewModel.StatusCompleted))
+            else if (info.Status.Equals(TaskViewModel.StatusCompleted))
             {
                 return CompletedBrush;
             }
