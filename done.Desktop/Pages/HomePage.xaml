@@ -306,26 +306,6 @@
                             </Grid>
                         </Grid>
                     </StackPanel>
-                    <StackPanel Margin="40,0,0,0" Width="250" Visibility="Collapsed">
-                        <TextBlock Text="Menu" Style="{StaticResource ModernTouchTextTitle1Style}"></TextBlock>
-                        <ListBox Width="Auto" SelectionChanged="ListBox_SelectionChanged">
-                            <ListBoxItem Margin="0,10,0,10">
-                                <TextBlock Text="Page 1" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
-                            </ListBoxItem>
-                            <ListBoxItem Margin="0,10,0,10">
-                                <TextBlock Text="Page 2" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
-                            </ListBoxItem>
-                            <ListBoxItem Margin="0,10,0,10">
-                                <TextBlock Text="Page 3" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
-                            </ListBoxItem>
-                            <ListBoxItem Margin="0,10,0,10">
-                                <TextBlock Text="Page 4" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
-                            </ListBoxItem>
-                            <ListBoxItem Margin="0,10,0,10">
-                                <TextBlock Text="Page 5" Style="{StaticResource ModernTouchTextTitle2Style}"></TextBlock>
-                            </ListBoxItem>
-                        </ListBox>
-                    </StackPanel>
                 </StackPanel>
             </ScrollViewer>
         </Grid>

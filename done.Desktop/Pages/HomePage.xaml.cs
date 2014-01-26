@@ -36,39 +36,16 @@ namespace done.Desktop.Pages
             {
                 vm.GetTaskListsCommand.Execute(null);
             }
+
+            if (vm.SelectedTaskList != null)
+            {
+                vm.SelectedTaskList.SelectedTask = null;
+            }
         }
 
         private void InfoButton_Click(object sender, RoutedEventArgs e)
         {
             NavigationService.Navigate(new Uri("/Pages/AboutPage.xaml", UriKind.Relative));
-        }
-
-        private void ListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListBox menu = sender as ListBox;
-
-            if (menu.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            NavigationService.Navigate(new Uri("/Pages/Page1.xaml", UriKind.Relative));
-
-            menu.SelectedIndex = -1;
-        }
-
-        private void Tasks_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            ListBox tasks = sender as ListBox;
-
-            if (tasks.SelectedIndex == -1)
-            {
-                return;
-            }
-
-            NavigationService.Navigate(new Uri("/Pages/Page1.xaml", UriKind.Relative));
-
-            tasks.SelectedIndex = -1;
         }
 
         private void CreateTaskListButton_Click(object sender, RoutedEventArgs e)
