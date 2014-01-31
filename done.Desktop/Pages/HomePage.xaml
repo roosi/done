@@ -195,7 +195,7 @@
                 HorizontalScrollBarVisibility="Auto"
                           CanContentScroll="False">
                 <StackPanel Orientation="Horizontal" Margin="0">
-                    <StackPanel Width="Auto" Margin="0,65,0,0">
+                    <StackPanel Width="Auto" Margin="0,65,0,0" Visibility="{Binding SelectedTaskList.IsLoading, Converter={StaticResource VisibilityConverter}}">
                         <Controls:Tile Background="{StaticResource StatusDue}"
                                        Width="150" Height="150" Margin="0,0,0,10"
                                        Visibility="{Binding SelectedTaskList.NbrOfDue, Converter={StaticResource VisibilityConverter}}">
