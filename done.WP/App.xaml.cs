@@ -31,6 +31,8 @@ namespace done.WP
             // Phone-specific initialization
             InitializePhoneApplication();
 
+            //ThemeManager.ToLightTheme();
+
             // Language display initialization
             InitializeLanguage();
 
@@ -53,7 +55,6 @@ namespace done.WP
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
-
         }
 
         // Code to execute when the application is launching (eg, from Start)
