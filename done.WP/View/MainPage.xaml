@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
+    xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:convertes="clr-namespace:done.WP.Converters"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -32,7 +33,7 @@
                            VerticalAlignment="Center"
                            FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
                 <Grid Grid.Column="1" 
-                      Width="50" Height="50" Margin="12,0,0,0" 
+                      Width="50" Height="50" Margin="12,18,0,0" 
                       VerticalAlignment="Center">
                     <Ellipse Height="50" Width="50" StrokeThickness="3" Stroke="{StaticResource PhoneForegroundBrush}"/>
                     <Image Source="/Toolkit.Content/next.png" Height="45" Width="45"></Image>
@@ -123,5 +124,16 @@
         <Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />
 -->
     </Grid>
+
+    <bar:Bindable.ApplicationBar>
+        <bar:BindableApplicationBar>
+            <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/refresh.png" IsEnabled="True" 
+                                              Text="{Binding LocalizedResources.AppBarButtonRefresh, Source={StaticResource LocalizedStrings}}"
+                                              Command="{Binding SelectedTaskList.GetTasksCommand}"/>
+            <bar:BindableApplicationBar.MenuItems>
+                <bar:BindableApplicationBarMenuItem Text="about"/>
+            </bar:BindableApplicationBar.MenuItems>
+        </bar:BindableApplicationBar>
+    </bar:Bindable.ApplicationBar>
 
 </phone:PhoneApplicationPage>

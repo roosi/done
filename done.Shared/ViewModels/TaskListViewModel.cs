@@ -221,6 +221,7 @@ namespace done.Shared.ViewModels
         {
             IsLoading = true;
 
+            Tasks.Clear();
             var result = await _dataService.GetTasksAsync(_model.Id);
 
             _tasks.Clear();

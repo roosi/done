@@ -61,6 +61,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to refresh.
+        /// </summary>
+        public static string AppBarButtonRefresh {
+            get {
+                return ResourceManager.GetString("AppBarButtonRefresh", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to add.
         /// </summary>
         public static string AppBarButtonText {

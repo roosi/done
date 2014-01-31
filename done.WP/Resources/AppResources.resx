@@ -137,4 +137,7 @@
   <data name="SelectTaskList" xml:space="preserve">
     <value>select tasklist</value>
   </data>
+  <data name="AppBarButtonRefresh" xml:space="preserve">
+    <value>refresh</value>
+  </data>
 </root>
