@@ -13,6 +13,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     shell:SystemTray.IsVisible="True"
+    toolkit:TiltEffect.IsTiltEnabled="True"
     DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
     <shell:SystemTray.ProgressIndicator>
         <shell:ProgressIndicator IsIndeterminate="True" IsVisible="{Binding IsLoading}"/>
@@ -20,13 +21,32 @@
 
     <phone:PhoneApplicationPage.Resources>
         <DataTemplate x:Key="TaskListTemplate">
-            <TextBlock Text="{Binding Title}"
-                       FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <TextBlock Text="{Binding Title}"
+                           VerticalAlignment="Center"
+                           FontSize="{StaticResource PhoneFontSizeExtraExtraLarge}"/>
+                <Grid Grid.Column="1" 
+                      Width="50" Height="50" Margin="12,0,0,0" 
+                      VerticalAlignment="Center">
+                    <Ellipse Height="50" Width="50" StrokeThickness="3" Stroke="{StaticResource PhoneForegroundBrush}"/>
+                    <Image Source="/Toolkit.Content/next.png" Height="45" Width="45"></Image>
+                </Grid>
+            </Grid>
         </DataTemplate>
         <DataTemplate x:Key="FullModeTaskListTemplate">
             <TextBlock Text="{Binding Title}"
                        Margin="0,12"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
+        </DataTemplate>
+        <DataTemplate x:Key="TaskTemplate">
+            <TextBlock Text="{Binding Title}"
+                       TextWrapping="Wrap"
+                       Margin="0,0,0,12"
+                       FontSize="{StaticResource PhoneFontSizeLarge}"/>
         </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -70,7 +90,9 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-
+            <ListBox Margin="12,0"
+                ItemsSource="{Binding SelectedTaskList.Tasks}"
+                ItemTemplate="{StaticResource TaskTemplate}"/>
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
@@ -79,9 +101,10 @@
             if the System Tray is hidden.
 
             Before shipping remove this XAML and the image itself.-->
+
         <!--
         <Image Source="/Assets/AlignmentGrid.png" VerticalAlignment="Top" Height="800" Width="480" Margin="0,-32,0,0" Grid.Row="0" Grid.RowSpan="2" IsHitTestVisible="False" />
-        -->
+-->
     </Grid>
 
 </phone:PhoneApplicationPage>
