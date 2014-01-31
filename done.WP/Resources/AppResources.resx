@@ -134,4 +134,7 @@
   <data name="AppBarMenuItemText" xml:space="preserve">
     <value>Menu Item</value>
   </data>
+  <data name="SelectTaskList" xml:space="preserve">
+    <value>select tasklist</value>
+  </data>
 </root>

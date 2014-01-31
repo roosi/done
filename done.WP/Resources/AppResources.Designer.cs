@@ -104,5 +104,14 @@ namespace done.WP.Resources {
                 return ResourceManager.GetString("ResourceLanguage", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to select tasklist.
+        /// </summary>
+        public static string SelectTaskList {
+            get {
+                return ResourceManager.GetString("SelectTaskList", resourceCulture);
+            }
+        }
     }
 }
