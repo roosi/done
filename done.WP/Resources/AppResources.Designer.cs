@@ -97,6 +97,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to save.
+        /// </summary>
+        public static string AppBarButtonSave {
+            get {
+                return ResourceManager.GetString("AppBarButtonSave", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to create tasklist.
         /// </summary>
         public static string AppBarMenuItemCreateTaskList {

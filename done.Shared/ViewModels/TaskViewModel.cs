@@ -39,6 +39,7 @@ namespace done.Shared.ViewModels
             Status = _model.Status;
             DueDate = _model.Due != null ? _model.Due.Value : DateTime.Today.ToLocalTime();
             Notes = _model.Notes;
+            IsEdited = false;
         }
 
         private void updateModel()
@@ -68,7 +69,10 @@ namespace done.Shared.ViewModels
             }
             set
             {
-                Set(IsEditedPropertyName, ref _isEdited, value);
+                if (Set(IsEditedPropertyName, ref _isEdited, value))
+                {
+                    UpdateTaskCommand.RaiseCanExecuteChanged();
+                }
             }
         }
 

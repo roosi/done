@@ -9,6 +9,7 @@
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
     xmlns:converters="clr-namespace:done.WP.Converters"
+    xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -41,15 +42,26 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
-                <TextBox Text="{Binding Title, Mode=TwoWay}"
-                         TextWrapping="Wrap" Margin="0,0,0,12"/>
+                <TextBox x:Name="Title" Text="{Binding Title, Mode=TwoWay}"
+                         TextWrapping="Wrap" Margin="0,0,0,12"
+                         TextChanged="Title_TextChanged">
+                    <!--
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="TextChanged">
+                            <i:InvokeCommandAction Command="{Binding TitleChangedCommand}" 
+                                                   CommandParameter="{Binding}"/>
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    -->
+                </TextBox>
                 <ScrollViewer Height="400">
                     <StackPanel>
                         <toolkit:ListPicker ItemsSource="{Binding Statuses}"
                                         SelectedItem="{Binding Status, Mode=TwoWay}"/>
                         <toolkit:DatePicker Value="{Binding DueDate, Mode=TwoWay}"/>
-                        <TextBox Text="{Binding Notes, Mode=TwoWay}"
-                                 TextWrapping="Wrap"/>
+                        <TextBox x:Name="Notes" Text="{Binding Notes, Mode=TwoWay}"
+                                 TextWrapping="Wrap"
+                                 TextChanged="Notes_TextChanged"/>
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
@@ -59,6 +71,9 @@
     <bar:Bindable.ApplicationBar>
         <bar:BindableApplicationBar BackgroundColor="{Binding StatusInformation, Converter={StaticResource StatusColorConverter}}"
                                     ForegroundColor="White">
+            <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/save.png" IsEnabled="True" 
+                                              Text="{Binding LocalizedResources.AppBarButtonSave, Source={StaticResource LocalizedStrings}}"
+                                              Command="{Binding UpdateTaskCommand}"/>
             <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/ApplicationBar.Check.png" IsEnabled="True" 
                                               Text="{Binding LocalizedResources.AppBarButtonComplete, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding CompleteTaskCommamd}"/>
