@@ -77,6 +77,11 @@
             <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/ApplicationBar.Check.png" IsEnabled="True" 
                                               Text="{Binding LocalizedResources.AppBarButtonComplete, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding CompleteTaskCommamd}"/>
+            <bar:BindableApplicationBar.MenuItems>
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemDeleteTask, Source={StaticResource LocalizedStrings}}"
+                                                    Command="{Binding DeleteTaskCommand}">
+                </bar:BindableApplicationBarMenuItem>
+            </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>
 

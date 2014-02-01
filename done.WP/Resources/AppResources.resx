@@ -158,4 +158,7 @@
   <data name="AppBarButtonSave" xml:space="preserve">
     <value>save</value>
   </data>
+  <data name="AppBarMenuItemDeleteTask" xml:space="preserve">
+    <value>delete task</value>
+  </data>
 </root>

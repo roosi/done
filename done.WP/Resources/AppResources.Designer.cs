@@ -115,6 +115,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to delete task.
+        /// </summary>
+        public static string AppBarMenuItemDeleteTask {
+            get {
+                return ResourceManager.GetString("AppBarMenuItemDeleteTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to delete tasklist.
         /// </summary>
         public static string AppBarMenuItemDeleteTaskList {
