@@ -66,7 +66,16 @@
                            FontSize="{StaticResource PhoneFontSizeLarge}"/>
             </Grid>
         </DataTemplate>
+        
+        <DataTemplate x:Key="CreateTaskListContentTemplate">
+            <Grid DataContext="{Binding TaskLists, Source={StaticResource Locator}}">
+                <TextBox Text="{Binding NewTaskListTitle, Mode=TwoWay}"
+                         FontSize="{StaticResource PhoneFontSizeMedium}"
+                         Margin="0,0,12,0"></TextBox>
+            </Grid>
+        </DataTemplate>
     </phone:PhoneApplicationPage.Resources>
+
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
@@ -136,8 +145,7 @@
                                               Text="{Binding LocalizedResources.AppBarButtonRefresh, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding SelectedTaskList.GetTasksCommand}"/>
             <bar:BindableApplicationBar.MenuItems>
-                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemCreateTaskList, Source={StaticResource LocalizedStrings}}"
-                                                    Command="{Binding CreateTaskListCommand}"/>
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemCreateTaskList, Source={StaticResource LocalizedStrings}}"/>
                 <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemDeleteTaskList, Source={StaticResource LocalizedStrings}}"
                                                     Command="{Binding DeleteTaskListCommand}"
                                                     CommandParameter="{Binding SelectedTaskList}"/>

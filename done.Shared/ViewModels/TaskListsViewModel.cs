@@ -110,9 +110,18 @@ namespace done.Shared.ViewModels
             }
 
             IsLoading = false;
-            _getTaskListsCommand.RaiseCanExecuteChanged();
-            _deleteTaskListCommand.RaiseCanExecuteChanged();
-            _createTaskListCommand.RaiseCanExecuteChanged();
+            if (_getTaskListsCommand != null)
+            {
+                _getTaskListsCommand.RaiseCanExecuteChanged();
+            }
+            if (_deleteTaskListCommand != null)
+            {
+                _deleteTaskListCommand.RaiseCanExecuteChanged();
+            }
+            if (_createTaskListCommand != null)
+            {
+                _createTaskListCommand.RaiseCanExecuteChanged();
+            }
         }
 
         private bool CanExecuteGetTaskListsCommand()
@@ -164,6 +173,7 @@ namespace done.Shared.ViewModels
             TaskList taskList = await _dataService.CreateTaskListAsync(NewTaskListTitle);
             IsLoading = false;
             TaskLists.Add(new TaskListViewModel(taskList, _dataService, _navigationService, _dialogService));
+            SelectedTaskList = TaskLists[TaskLists.Count - 1];
             NewTaskListTitle = string.Empty;
         }
 

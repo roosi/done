@@ -31,8 +31,38 @@ namespace done.WP
             _vm = DataContext as TaskListsViewModel;
             _vm.EditMode = true;
 
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Click += CreateTaskList_Click;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Click += AboutMenu_Click;
         }
+
+        void CreateTaskList_Click(object sender, EventArgs e)
+        {
+            CustomMessageBox messageBox = new CustomMessageBox()
+            {
+                Caption = "Create tasklist?",
+                Message = "Give a name of a new list.",
+                LeftButtonContent = "OK",
+                RightButtonContent = "Cancel",
+                ContentTemplate = (DataTemplate)Resources["CreateTaskListContentTemplate"]
+            };
+
+            messageBox.Dismissed += (s1, e1) =>
+                {
+                    switch (e1.Result)
+                    {
+                        case CustomMessageBoxResult.LeftButton:
+                        {
+                            if (_vm.CreateTaskListCommand.CanExecute(null))
+                            {
+                                _vm.CreateTaskListCommand.Execute(null);
+                            }
+                            break;
+                        }
+                    }
+                };
+            messageBox.Show();
+        }
+
 
         void AboutMenu_Click(object sender, EventArgs e)
         {
