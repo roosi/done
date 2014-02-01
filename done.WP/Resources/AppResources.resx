@@ -161,4 +161,10 @@
   <data name="AppBarMenuItemDeleteTask" xml:space="preserve">
     <value>delete task</value>
   </data>
+  <data name="HintGiveTitle" xml:space="preserve">
+    <value>give a title</value>
+  </data>
+  <data name="HintWriteNotes" xml:space="preserve">
+    <value>write notes</value>
+  </data>
 </root>

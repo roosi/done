@@ -151,6 +151,24 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to give a title.
+        /// </summary>
+        public static string HintGiveTitle {
+            get {
+                return ResourceManager.GetString("HintGiveTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to write notes.
+        /// </summary>
+        public static string HintWriteNotes {
+            get {
+                return ResourceManager.GetString("HintWriteNotes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to licenses.
         /// </summary>
         public static string Licenses {

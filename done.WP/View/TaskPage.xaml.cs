@@ -24,12 +24,20 @@ namespace done.WP.View
 
         private void Title_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _vm.Title = ((TextBox)sender).Text;
+            string value = ((TextBox)sender).Text;
+            if (value.Equals(_vm.Title) == false)
+            {
+                _vm.Title = value;
+            }
         }
 
         private void Notes_TextChanged(object sender, TextChangedEventArgs e)
         {
-            _vm.Notes = ((TextBox)sender).Text;
+            string value = ((TextBox)sender).Text;
+            if (value.Equals(_vm.Notes) == false)
+            {
+                _vm.Notes = value;
+            }
         }
     }
 }

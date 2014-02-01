@@ -42,9 +42,11 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
-                <TextBox x:Name="Title" Text="{Binding Title, Mode=TwoWay}"
-                         TextWrapping="Wrap" Margin="0,0,0,12"
-                         TextChanged="Title_TextChanged">
+                <toolkit:PhoneTextBox x:Name="Title" 
+                                      Text="{Binding Title, Mode=TwoWay}"
+                                      Hint="{Binding LocalizedResources.HintGiveTitle, Source={StaticResource LocalizedStrings}}"
+                                      TextWrapping="Wrap" Margin="0,0,0,12"
+                                      TextChanged="Title_TextChanged">
                     <!--
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="TextChanged">
@@ -53,15 +55,17 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     -->
-                </TextBox>
+                </toolkit:PhoneTextBox>
                 <ScrollViewer Height="400">
                     <StackPanel>
                         <toolkit:ListPicker ItemsSource="{Binding Statuses}"
                                         SelectedItem="{Binding Status, Mode=TwoWay}"/>
                         <toolkit:DatePicker Value="{Binding DueDate, Mode=TwoWay}"/>
-                        <TextBox x:Name="Notes" Text="{Binding Notes, Mode=TwoWay}"
-                                 TextWrapping="Wrap"
-                                 TextChanged="Notes_TextChanged"/>
+                        <toolkit:PhoneTextBox x:Name="Notes" 
+                                              Text="{Binding Notes, Mode=TwoWay}"
+                                              Hint="{Binding LocalizedResources.HintWriteNotes, Source={StaticResource LocalizedStrings}}"
+                                              TextWrapping="Wrap"
+                                              TextChanged="Notes_TextChanged"/>
                     </StackPanel>
                 </ScrollViewer>
             </StackPanel>
