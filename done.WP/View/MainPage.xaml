@@ -129,11 +129,14 @@
 
     <bar:Bindable.ApplicationBar>
         <bar:BindableApplicationBar>
+            <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/ApplicationBar.Add.png" IsEnabled="True" 
+                                              Text="{Binding LocalizedResources.AppBarButtonNewTask, Source={StaticResource LocalizedStrings}}"
+                                              Command="{Binding SelectedTaskList.CreateTaskCommand}"/>
             <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/refresh.png" IsEnabled="True" 
                                               Text="{Binding LocalizedResources.AppBarButtonRefresh, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding SelectedTaskList.GetTasksCommand}"/>
             <bar:BindableApplicationBar.MenuItems>
-                <bar:BindableApplicationBarMenuItem Text="about">
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}">
                     
                 </bar:BindableApplicationBarMenuItem>
             </bar:BindableApplicationBar.MenuItems>

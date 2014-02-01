@@ -128,11 +128,11 @@
   <data name="ApplicationTitle" xml:space="preserve">
     <value>done</value>
   </data>
-  <data name="AppBarButtonText" xml:space="preserve">
-    <value>add</value>
+  <data name="AppBarButtonNewTask" xml:space="preserve">
+    <value>new task</value>
   </data>
-  <data name="AppBarMenuItemText" xml:space="preserve">
-    <value>Menu Item</value>
+  <data name="AppBarMenuItemCreateTaskList" xml:space="preserve">
+    <value>create tasklist</value>
   </data>
   <data name="SelectTaskList" xml:space="preserve">
     <value>select tasklist</value>
@@ -151,5 +151,8 @@
   </data>
   <data name="AppBarButtonComplete" xml:space="preserve">
     <value>done</value>
+  </data>
+  <data name="AppBarMenuItemDeleteTaskList" xml:space="preserve">
+    <value>delete tasklist</value>
   </data>
 </root>

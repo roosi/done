@@ -79,6 +79,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to new task.
+        /// </summary>
+        public static string AppBarButtonNewTask {
+            get {
+                return ResourceManager.GetString("AppBarButtonNewTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to refresh.
         /// </summary>
         public static string AppBarButtonRefresh {
@@ -88,20 +97,20 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to add.
+        ///   Looks up a localized string similar to create tasklist.
         /// </summary>
-        public static string AppBarButtonText {
+        public static string AppBarMenuItemCreateTaskList {
             get {
-                return ResourceManager.GetString("AppBarButtonText", resourceCulture);
+                return ResourceManager.GetString("AppBarMenuItemCreateTaskList", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Menu Item.
+        ///   Looks up a localized string similar to delete tasklist.
         /// </summary>
-        public static string AppBarMenuItemText {
+        public static string AppBarMenuItemDeleteTaskList {
             get {
-                return ResourceManager.GetString("AppBarMenuItemText", resourceCulture);
+                return ResourceManager.GetString("AppBarMenuItemDeleteTaskList", resourceCulture);
             }
         }
         
