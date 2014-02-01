@@ -16,6 +16,13 @@
         <Brush x:Key="StatusDueClosing">#ffa500</Brush>
         <Brush x:Key="StatusCompleted">#008000</Brush>
         <Brush x:Key="StatusNeedsAction">#00bfff</Brush>
+
+        <Color x:Key="StatusNewColor">#d3d3d3</Color>
+        <Color x:Key="StatusDueColor">#ff0000</Color>
+        <Color x:Key="StatusDueClosingColor">#ffa500</Color>
+        <Color x:Key="StatusCompletedColor">#008000</Color>
+        <Color x:Key="StatusNeedsActionColor">#00bfff</Color>
+        
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

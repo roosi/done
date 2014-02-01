@@ -149,4 +149,7 @@
   <data name="Licenses" xml:space="preserve">
     <value>licenses</value>
   </data>
+  <data name="AppBarButtonComplete" xml:space="preserve">
+    <value>done</value>
+  </data>
 </root>
