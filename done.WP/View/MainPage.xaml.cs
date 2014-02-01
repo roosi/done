@@ -29,6 +29,13 @@ namespace done.WP
             InitializeComponent();
 
             _vm = DataContext as TaskListsViewModel;
+
+            ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Click += AboutMenu_Click;
+        }
+
+        void AboutMenu_Click(object sender, EventArgs e)
+        {
+            NavigationService.Navigate(new Uri("/View/AboutPage.xaml", UriKind.Relative));
         }
 
         protected override async void OnNavigatedTo(NavigationEventArgs e)

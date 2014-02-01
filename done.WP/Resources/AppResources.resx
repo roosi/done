@@ -137,7 +137,13 @@
   <data name="SelectTaskList" xml:space="preserve">
     <value>select tasklist</value>
   </data>
+  <data name="About" xml:space="preserve">
+    <value>about</value>
+  </data>
   <data name="AppBarButtonRefresh" xml:space="preserve">
     <value>refresh</value>
+  </data>
+  <data name="Licenses" xml:space="preserve">
+    <value>licenses</value>
   </data>
 </root>
