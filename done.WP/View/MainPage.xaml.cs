@@ -29,6 +29,7 @@ namespace done.WP
             InitializeComponent();
 
             _vm = DataContext as TaskListsViewModel;
+            _vm.EditMode = true;
 
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Click += AboutMenu_Click;
         }

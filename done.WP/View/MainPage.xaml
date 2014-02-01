@@ -136,9 +136,12 @@
                                               Text="{Binding LocalizedResources.AppBarButtonRefresh, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding SelectedTaskList.GetTasksCommand}"/>
             <bar:BindableApplicationBar.MenuItems>
-                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}">
-                    
-                </bar:BindableApplicationBarMenuItem>
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemCreateTaskList, Source={StaticResource LocalizedStrings}}"
+                                                    Command="{Binding CreateTaskListCommand}"/>
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemDeleteTaskList, Source={StaticResource LocalizedStrings}}"
+                                                    Command="{Binding DeleteTaskListCommand}"
+                                                    CommandParameter="{Binding SelectedTaskList}"/>
+                <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.About, Source={StaticResource LocalizedStrings}}"/>
             </bar:BindableApplicationBar.MenuItems>
         </bar:BindableApplicationBar>
     </bar:Bindable.ApplicationBar>

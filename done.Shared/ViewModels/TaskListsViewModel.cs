@@ -111,6 +111,8 @@ namespace done.Shared.ViewModels
 
             IsLoading = false;
             _getTaskListsCommand.RaiseCanExecuteChanged();
+            _deleteTaskListCommand.RaiseCanExecuteChanged();
+            _createTaskListCommand.RaiseCanExecuteChanged();
         }
 
         private bool CanExecuteGetTaskListsCommand()
@@ -151,12 +153,12 @@ namespace done.Shared.ViewModels
             get
             {
                 return _createTaskListCommand ?? (_createTaskListCommand = new RelayCommand(
-                    ExecuteCreateTaskListCommnad,
-                    CanExecuteCreateTaskListCommnad));
+                    ExecuteCreateTaskListCommand,
+                    CanExecuteCreateTaskListCommand));
             }
         }
 
-        private async void ExecuteCreateTaskListCommnad()
+        private async void ExecuteCreateTaskListCommand()
         {
             IsLoading = true;
             TaskList taskList = await _dataService.CreateTaskListAsync(NewTaskListTitle);
@@ -165,7 +167,7 @@ namespace done.Shared.ViewModels
             NewTaskListTitle = string.Empty;
         }
 
-        private bool CanExecuteCreateTaskListCommnad()
+        private bool CanExecuteCreateTaskListCommand()
         {
             return IsLoading == false && string.IsNullOrEmpty(_newTaskListTitle) == false;
         }
@@ -189,7 +191,10 @@ namespace done.Shared.ViewModels
             }
             set
             {
-                Set(EditModePropertyName, ref _editMode, value);
+                if (Set(EditModePropertyName, ref _editMode, value))
+                {
+                    DeleteTaskListCommand.RaiseCanExecuteChanged();
+                }
             }
         }
 
