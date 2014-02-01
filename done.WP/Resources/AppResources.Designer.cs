@@ -106,6 +106,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to edit task.
+        /// </summary>
+        public static string EditTask {
+            get {
+                return ResourceManager.GetString("EditTask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to licenses.
         /// </summary>
         public static string Licenses {

@@ -137,9 +137,9 @@ namespace done.Shared.ViewModels
             }
             set
             {
-                if (IsEdited = Set(StatusPropertyName, ref _status, value))
+                if (value != null)
                 {
-                    if (_status != null)
+                    if (IsEdited = Set(StatusPropertyName, ref _status, value))
                     {
                         IsCompleted = _status.Equals(StatusCompleted);
                     }

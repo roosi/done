@@ -143,6 +143,9 @@
   <data name="AppBarButtonRefresh" xml:space="preserve">
     <value>refresh</value>
   </data>
+  <data name="EditTask" xml:space="preserve">
+    <value>edit task</value>
+  </data>
   <data name="Licenses" xml:space="preserve">
     <value>licenses</value>
   </data>
