@@ -72,6 +72,16 @@
                                TextTrimming="WordEllipsis"
                                Style="{StaticResource PhoneTextNormalStyle}"/>
                 </StackPanel>
+                <toolkit:ContextMenuService.ContextMenu>
+                    <toolkit:ContextMenu>
+                        <toolkit:MenuItem Header="Move up"
+                                          Command="{Binding TaskLists.SelectedTaskList.MoveTaskUpCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}"/>
+                        <toolkit:MenuItem Header="Move down"
+                                          Command="{Binding TaskLists.SelectedTaskList.MoveTaskDownCommand, Source={StaticResource Locator}}"
+                                          CommandParameter="{Binding}"/>
+                    </toolkit:ContextMenu>
+                </toolkit:ContextMenuService.ContextMenu>
             </Grid>
         </DataTemplate>
         

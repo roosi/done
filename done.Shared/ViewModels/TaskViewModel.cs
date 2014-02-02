@@ -33,6 +33,9 @@ namespace done.Shared.ViewModels
             update();
         }
 
+
+        public Task Model { get { return _model;} }
+
         private void update()
         {
             Title = _model.Title;

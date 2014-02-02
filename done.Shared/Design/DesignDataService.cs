@@ -74,5 +74,11 @@ namespace done.Shared.Design
         {
             throw new NotImplementedException();
         }
+
+
+        public System.Threading.Tasks.Task<Task> MoveTaskAsync(Task task, Task previousTask, string listId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

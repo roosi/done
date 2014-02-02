@@ -99,5 +99,21 @@ namespace done.Shared.Model
 
             return await _service.Tasks.Delete(listId, task.Id).ExecuteAsync();
         }
+
+        public async System.Threading.Tasks.Task<Task> MoveTaskAsync(Task task, Task previousTask, string listId)
+        {
+            if (_service == null)
+            {
+                throw new Exception("Service is not initialized");
+            }
+
+            Google.Apis.Tasks.v1.TasksResource.MoveRequest request = _service.Tasks.Move(listId, task.Id);
+            if (previousTask != null)
+            {
+                request.Previous = previousTask.Id;
+            }
+
+            return await request.ExecuteAsync();
+        }
     }
 }

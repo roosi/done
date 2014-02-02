@@ -20,6 +20,8 @@ namespace done.Shared.Services
 
         Task<Google.Apis.Tasks.v1.Data.Task> CreateTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);
         Task<Google.Apis.Tasks.v1.Data.Task> UpdateTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);
+        Task<Google.Apis.Tasks.v1.Data.Task> MoveTaskAsync(Google.Apis.Tasks.v1.Data.Task task, Google.Apis.Tasks.v1.Data.Task previousTask, string listId);
+
         Task<string> DeleteTaskAsync(Google.Apis.Tasks.v1.Data.Task task, string listId);
     }
 }

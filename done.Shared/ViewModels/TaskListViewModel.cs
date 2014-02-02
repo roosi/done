@@ -355,5 +355,83 @@ namespace done.Shared.ViewModels
         {
             return IsLoading == false;
         }
+
+        private RelayCommand<TaskViewModel> _moveTaskUpCommand;
+
+        /// <summary>
+        /// Gets the MoveTaskUpCommand.
+        /// </summary>
+        public RelayCommand<TaskViewModel> MoveTaskUpCommand
+        {
+            get
+            {
+                return _moveTaskUpCommand ?? (_moveTaskUpCommand = new RelayCommand<TaskViewModel>(
+                    ExecuteMoveTaskUpCommand,
+                    CanExecuteMoveTaskUpCommand));
+            }
+        }
+
+        private async void ExecuteMoveTaskUpCommand(TaskViewModel parameter)
+        {
+            IsLoading = true;
+            int index = Tasks.IndexOf(parameter);
+            Tasks.Remove(parameter);
+            index--;
+            Tasks.Insert(index,parameter);
+
+            await _dataService.MoveTaskAsync(parameter.Model, index == 0 ? null : Tasks[--index].Model, _model.Id);
+            IsLoading = false;
+        }
+
+        private bool CanExecuteMoveTaskUpCommand(TaskViewModel parameter)
+        {
+            if (Tasks.IndexOf(parameter) == 0)
+            {
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
+        }
+
+        private RelayCommand<TaskViewModel> _moveTaskDownCommand;
+
+        /// <summary>
+        /// Gets the MoveTaskDownCommand.
+        /// </summary>
+        public RelayCommand<TaskViewModel> MoveTaskDownCommand
+        {
+            get
+            {
+                return _moveTaskDownCommand ?? (_moveTaskDownCommand = new RelayCommand<TaskViewModel>(
+                    ExecuteMoveTaskDownCommand,
+                    CanExecuteMoveTaskDownCommand));
+            }
+        }
+
+        private async void ExecuteMoveTaskDownCommand(TaskViewModel parameter)
+        {
+            IsLoading = true;
+            int index = Tasks.IndexOf(parameter);
+            Tasks.Remove(parameter);
+            index++;
+            Tasks.Insert(index,parameter);
+
+            await _dataService.MoveTaskAsync(parameter.Model, Tasks[--index].Model, _model.Id);
+            IsLoading = false;
+        }
+
+        private bool CanExecuteMoveTaskDownCommand(TaskViewModel parameter)
+        {
+            if (Tasks.IndexOf(parameter) == Tasks.Count - 1)
+            {
+                return false;
+            }
+            else 
+            {
+                return true;
+            }
+        }
     }
 }
