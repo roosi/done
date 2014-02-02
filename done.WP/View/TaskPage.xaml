@@ -24,6 +24,7 @@
 
     <phone:PhoneApplicationPage.Resources>
         <converters:StatusColorConverter x:Key="StatusColorConverter"/>
+        <converters:InverseBooleanConverter x:Key="InverseBooleanConverter"/>
     </phone:PhoneApplicationPage.Resources>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -46,6 +47,7 @@
                                       Text="{Binding Title, Mode=TwoWay}"
                                       Hint="{Binding LocalizedResources.HintGiveTitle, Source={StaticResource LocalizedStrings}}"
                                       TextWrapping="Wrap" Margin="0,0,0,12"
+                                      IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"
                                       TextChanged="Title_TextChanged">
                     <!--
                     <i:Interaction.Triggers>
@@ -60,11 +62,13 @@
                     <StackPanel>
                         <toolkit:ListPicker ItemsSource="{Binding Statuses}"
                                         SelectedItem="{Binding Status, Mode=TwoWay}"/>
-                        <toolkit:DatePicker Value="{Binding DueDate, Mode=TwoWay}"/>
+                        <toolkit:DatePicker Value="{Binding DueDate, Mode=TwoWay}"
+                                            IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
                         <toolkit:PhoneTextBox x:Name="Notes" 
                                               Text="{Binding Notes, Mode=TwoWay}"
                                               Hint="{Binding LocalizedResources.HintWriteNotes, Source={StaticResource LocalizedStrings}}"
                                               TextWrapping="Wrap"
+                                              IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"
                                               TextChanged="Notes_TextChanged"/>
                     </StackPanel>
                 </ScrollViewer>
