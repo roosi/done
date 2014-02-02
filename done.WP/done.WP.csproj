@@ -98,6 +98,10 @@
     <Compile Include="Converters\StatusBrushConverter.cs" />
     <Compile Include="Converters\VisibilityConverter.cs" />
     <Compile Include="LocalizedStrings.cs" />
+    <Page Include="Resources\DoneResourceDictionary.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Compile Include="Services\DialogService.cs" />
     <Compile Include="Services\NavigationService.cs" />
     <Compile Include="ViewModel\WPViewModelLocator.cs" />

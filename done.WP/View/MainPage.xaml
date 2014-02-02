@@ -43,7 +43,7 @@
                 </Button>
             </Grid>
         </DataTemplate>
-        <DataTemplate x:Key="FullModeTaskListTemplate">
+        <DataTemplate x:Key="TaskListFullModeTemplate">
             <TextBlock Text="{Binding Title}"
                        Margin="0,12"
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
@@ -82,6 +82,7 @@
                          Margin="0,0,12,0"></TextBox>
             </Grid>
         </DataTemplate>
+
     </phone:PhoneApplicationPage.Resources>
     
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -118,10 +119,11 @@
                                 ItemsSource="{Binding TaskLists}" 
                                 SelectedItem="{Binding SelectedTaskList, Mode=TwoWay}"
                                 ItemTemplate="{StaticResource TaskListTemplate}"
-                                FullModeItemTemplate="{StaticResource FullModeTaskListTemplate}"
+                                FullModeItemTemplate="{StaticResource TaskListFullModeTemplate}"
                                 FullModeHeader="{Binding LocalizedResources.SelectTaskList, Source={StaticResource LocalizedStrings}}"
                                 BorderThickness="0"
-                                ExpansionMode="FullScreenOnly"/>
+                                ExpansionMode="FullScreenOnly" 
+                                Template="{StaticResource ListPickerControlTemplate}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
