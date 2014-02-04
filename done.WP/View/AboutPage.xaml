@@ -96,6 +96,28 @@
                                            TargetName="_blank">View license</Hyperlink>
                                 <LineBreak></LineBreak>
                             </Paragraph>
+                            <Paragraph FontSize="{StaticResource PhoneFontSizeMedium}">
+                                ReorderListBox
+                            </Paragraph>
+                            <Paragraph>
+                                Copyright (c) 2013 Jason Ginchereau
+                            </Paragraph>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="http://reorderlistbox.codeplex.com/license"
+                                           TargetName="_blank">View license</Hyperlink>
+                                <LineBreak></LineBreak>
+                            </Paragraph>
+                            <Paragraph FontSize="{StaticResource PhoneFontSizeMedium}">
+                                Modern UI Icons
+                            </Paragraph>
+                            <Paragraph>
+                                Created by Austin Andrews of Templarian.com
+                            </Paragraph>
+                            <Paragraph>
+                                <Hyperlink NavigateUri="https://github.com/Templarian/WindowsIcons/blob/master/WindowsPhone/license.txt"
+                                           TargetName="_blank">View license</Hyperlink>
+                                <LineBreak></LineBreak>
+                            </Paragraph>
                         </RichTextBox>
                     </ScrollViewer>
 
