@@ -8,6 +8,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:toolkit="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone.Controls.Toolkit"
     xmlns:bar="clr-namespace:BindableApplicationBar;assembly=BindableApplicationBar"
+    xmlns:rlb="clr-namespace:ReorderListBox;assembly=ReorderListBox"
     xmlns:convertes="clr-namespace:done.WP.Converters"
     mc:Ignorable="d"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -49,7 +50,7 @@
                        FontSize="{StaticResource PhoneFontSizeExtraLarge}"/>
         </DataTemplate>
         <DataTemplate x:Key="TaskTemplate">
-            <Grid Margin="0,0,0,12">
+            <Grid Margin="0,6,0,6">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
@@ -137,11 +138,39 @@
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <ListBox Margin="12,0"
+        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,0,0">
+            <rlb:ReorderListBox x:Name="TaskList" 
+                                Margin="12,0,0,0"
+                                ItemsSource="{Binding SelectedTaskList.Tasks}"
+                                SelectedItem="{Binding SelectedTaskList.SelectedTask, Mode=TwoWay}"
+                                ItemTemplate="{StaticResource TaskTemplate}"
+                                IsReorderEnabled="{Binding SelectedTaskList.EditMode}">
+                <rlb:ReorderListBox.ItemContainerStyle>
+                    <Style TargetType="rlb:ReorderListBoxItem">
+                        <Setter Property="DragHandleTemplate">
+                            <Setter.Value>
+                                <DataTemplate>
+                                    <Canvas Width="42"
+                                            Height="80"
+                                            Background="Transparent">
+                                        <Rectangle Width="16" 
+                                                   Height="80"
+                                                   Margin="30,0,0,0"
+                                                   Fill="{StaticResource PhoneAccentBrush}"/>
+                                    </Canvas>
+                                </DataTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </rlb:ReorderListBox.ItemContainerStyle>
+            </rlb:ReorderListBox>
+
+            <!--
+            <ListBox Margin="12,0,0,0"
                      ItemsSource="{Binding SelectedTaskList.Tasks}"
                      SelectedItem="{Binding SelectedTaskList.SelectedTask, Mode=TwoWay}"
                      ItemTemplate="{StaticResource TaskTemplate}"/>
+            -->
         </Grid>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
@@ -164,6 +193,8 @@
             <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/refresh.png" IsEnabled="True" 
                                               Text="{Binding LocalizedResources.AppBarButtonRefresh, Source={StaticResource LocalizedStrings}}"
                                               Command="{Binding SelectedTaskList.GetTasksCommand}"/>
+            <bar:BindableApplicationBarButton IconUri="/Toolkit.Content/appbar.list.reorder.png" IsEnabled="True" 
+                                              Text="{Binding LocalizedResources.AppBarButtonReorder, Source={StaticResource LocalizedStrings}}"/>
             <bar:BindableApplicationBar.MenuItems>
                 <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemCreateTaskList, Source={StaticResource LocalizedStrings}}"/>
                 <bar:BindableApplicationBarMenuItem Text="{Binding LocalizedResources.AppBarMenuItemDeleteTaskList, Source={StaticResource LocalizedStrings}}"

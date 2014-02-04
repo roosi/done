@@ -167,4 +167,7 @@
   <data name="HintWriteNotes" xml:space="preserve">
     <value>write notes</value>
   </data>
+  <data name="AppBarButtonReorder" xml:space="preserve">
+    <value>reorder</value>
+  </data>
 </root>

@@ -97,6 +97,15 @@ namespace done.WP.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to reorder.
+        /// </summary>
+        public static string AppBarButtonReorder {
+            get {
+                return ResourceManager.GetString("AppBarButtonReorder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to save.
         /// </summary>
         public static string AppBarButtonSave {

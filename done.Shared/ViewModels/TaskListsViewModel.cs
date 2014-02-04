@@ -97,13 +97,22 @@ namespace done.Shared.ViewModels
         private async void ExecuteGetTaskListsCommand()
         {
             IsLoading = true;
-            var result = await _dataService.GetTaskListsAsync();
 
-            _taskLists.Clear();
-            foreach (TaskList list in result.Items)
+            try
             {
-                TaskLists.Add(new TaskListViewModel(list, _dataService, _navigationService, _dialogService));
+                var result = await _dataService.GetTaskListsAsync();
+                _taskLists.Clear();
+                foreach (TaskList list in result.Items)
+                {
+                    TaskLists.Add(new TaskListViewModel(list, _dataService, _navigationService, _dialogService));
+                }
             }
+            catch (Google.GoogleApiException e)
+            {
+                _dialogService.ShowMessage(e.Message, e.ServiceName, MessageButton.OK);
+            }
+
+
             if (_taskLists.Count > 0)
             {
                 SelectedTaskList = _taskLists[0];

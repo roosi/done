@@ -31,8 +31,14 @@ namespace done.WP
             _vm = DataContext as TaskListsViewModel;
             _vm.EditMode = true;
 
+            ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).Click += ReorderList_Click;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Click += CreateTaskList_Click;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Click += AboutMenu_Click;
+        }
+
+        void ReorderList_Click(object sender, EventArgs e)
+        {
+            _vm.SelectedTaskList.EditMode = !_vm.SelectedTaskList.EditMode;
         }
 
         void CreateTaskList_Click(object sender, EventArgs e)

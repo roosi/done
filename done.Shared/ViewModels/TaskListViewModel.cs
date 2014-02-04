@@ -4,6 +4,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Google.Apis.Tasks.v1.Data;
 using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
 namespace done.Shared.ViewModels
@@ -40,6 +41,43 @@ namespace done.Shared.ViewModels
                 {
                     updateCounters();
                 });
+
+            _tasks.CollectionChanged += _tasks_CollectionChanged;
+        }
+
+        void _tasks_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            // track moved tasks, if edit mode is on
+            if (_editMode == true)
+            {
+                switch (e.Action)
+                {
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Add:
+                    {
+                        int addIndex = e.NewStartingIndex;
+                        TaskViewModel item = (TaskViewModel)e.NewItems[0];
+                        if (_movedTasks.Contains(item) == false)
+                        {
+                            _movedTasks.Add(item);
+                        }
+                        break;
+                    }
+                    case System.Collections.Specialized.NotifyCollectionChangedAction.Remove:
+                    {
+                        int removeIndex = e.OldStartingIndex;
+                        TaskViewModel item = (TaskViewModel)e.OldItems[0];
+                        if (_movedTasks.Contains(item) == false)
+                        {
+                            _movedTasks.Add(item);
+                        }
+                        break;
+                    }
+                    default:
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public string Id
@@ -56,6 +94,39 @@ namespace done.Shared.ViewModels
             {
                 return _model.Title;
             } 
+        }
+
+        /// <summary>
+        /// The <see cref="EditMode" /> property's name.
+        /// </summary>
+        public const string EditModePropertyName = "EditMode";
+
+        private bool _editMode = false;
+
+        /// <summary>
+        /// Sets and gets the EditMode property.
+        /// Changes to that property's value raise the PropertyChanged event. 
+        /// </summary>
+        public bool EditMode
+        {
+            get
+            {
+                return _editMode;
+            }
+            set
+            {
+                if (Set(EditModePropertyName, ref _editMode, value))
+                {
+                    if (_editMode == false)
+                    {
+                        CommitChanges();
+                    }
+                    else
+                    {
+                        _movedTasks.Clear();
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -86,6 +157,8 @@ namespace done.Shared.ViewModels
                 }
             }
         }
+
+        private List<TaskViewModel> _movedTasks = new List<TaskViewModel>();
 
         /// <summary>
         /// The <see cref="Tasks" /> property's name.
@@ -432,6 +505,18 @@ namespace done.Shared.ViewModels
             {
                 return true;
             }
+        }
+
+        private async void CommitChanges()
+        {
+            IsLoading = true;
+            foreach (TaskViewModel task in _tasks)
+            {
+                int index = Tasks.IndexOf(task);
+
+                await _dataService.MoveTaskAsync(task.Model, index == 0 ? null : Tasks[--index].Model, _model.Id);
+            }
+            IsLoading = false;
         }
     }
 }
