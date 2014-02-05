@@ -173,6 +173,7 @@
     <Content Include="Toolkit.Content\ApplicationBar.Check.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Delete.png" />
     <Content Include="Toolkit.Content\ApplicationBar.Select.png" />
+    <Content Include="Toolkit.Content\microphone.png" />
     <Content Include="Toolkit.Content\next.png" />
     <Content Include="Toolkit.Content\refresh.png" />
     <Content Include="Toolkit.Content\save.png" />

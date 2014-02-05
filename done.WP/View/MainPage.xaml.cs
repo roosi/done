@@ -34,6 +34,8 @@ namespace done.WP
             ((ApplicationBarIconButton)ApplicationBar.Buttons[2]).Click += ReorderList_Click;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[0]).Click += CreateTaskList_Click;
             ((ApplicationBarMenuItem)ApplicationBar.MenuItems[2]).Click += AboutMenu_Click;
+
+            ApplicationBar.IsVisible = false;
         }
 
         void ReorderList_Click(object sender, EventArgs e)
@@ -97,6 +99,8 @@ namespace done.WP
                 dataService.SetUserCredential(credential);
 
                 _vm.GetTaskListsCommand.Execute(null);
+
+                ApplicationBar.IsVisible = true;
             }
             else if (e.NavigationMode == NavigationMode.Back)
             {

@@ -9,7 +9,7 @@ using Google.Apis.Tasks.v1.Data;
 namespace done.Test
 {
     [TestClass]
-    public class UnitTest1
+    public class TaskAPITests
     {
         private const String _clientId = "552948890600.apps.googleusercontent.com";
         private const String _clientSecret = "H_AA4PQQvKtmcHYubTd5SEHi";

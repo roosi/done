@@ -8,6 +8,7 @@ using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 using done.Shared.ViewModels;
+using Windows.Phone.Speech.Recognition;
 
 namespace done.WP.View
 {
@@ -37,6 +38,29 @@ namespace done.WP.View
             if (value.Equals(_vm.Notes) == false)
             {
                 _vm.Notes = value;
+            }
+        }
+
+        private async void VoiceRecognitionButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                SpeechRecognizerUI sr = new SpeechRecognizerUI();
+
+                SpeechRecognitionUIResult result = await sr.RecognizeWithUIAsync();
+
+                if (result.ResultStatus == SpeechRecognitionUIStatus.Succeeded)
+                {
+                    if (string.IsNullOrEmpty(_vm.Notes) == false)
+                    {
+                        _vm.Notes += " ";
+                    }
+                    _vm.Notes += result.RecognitionResult.Text;
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Voice recognition is not enabled. Check your settings.");
             }
         }
     }

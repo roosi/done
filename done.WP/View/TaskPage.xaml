@@ -43,12 +43,12 @@
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Orientation="Vertical">
-                <toolkit:PhoneTextBox x:Name="Title" 
-                                      Text="{Binding Title, Mode=TwoWay}"
-                                      Hint="{Binding LocalizedResources.HintGiveTitle, Source={StaticResource LocalizedStrings}}"
-                                      TextWrapping="Wrap" Margin="0,0,0,12"
-                                      IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"
-                                      TextChanged="Title_TextChanged">
+                <toolkit:SpeechTextBox x:Name="Title" 
+                                       Text="{Binding Title, Mode=TwoWay}"
+                                       Hint="{Binding LocalizedResources.HintGiveTitle, Source={StaticResource LocalizedStrings}}"
+                                       TextWrapping="Wrap" Margin="0,0,0,12"
+                                       IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"
+                                       TextChanged="Title_TextChanged">
                     <!--
                     <i:Interaction.Triggers>
                         <i:EventTrigger EventName="TextChanged">
@@ -57,14 +57,23 @@
                         </i:EventTrigger>
                     </i:Interaction.Triggers>
                     -->
-                </toolkit:PhoneTextBox>
+                </toolkit:SpeechTextBox>
                 <ScrollViewer Height="400">
                     <StackPanel>
                         <toolkit:ListPicker ItemsSource="{Binding Statuses}"
                                         SelectedItem="{Binding Status, Mode=TwoWay}"/>
                         <toolkit:DatePicker Value="{Binding DueDate, Mode=TwoWay}"
                                             IsEnabled="{Binding IsCompleted, Converter={StaticResource InverseBooleanConverter}}"/>
-                        <toolkit:PhoneTextBox x:Name="Notes" 
+                        <Button x:Name="VoiceRecognitionButton" Style="{StaticResource CircleIconButton}"
+                                Background="{StaticResource PhoneSemitransparentBrush}"
+                                Height="50" Width="50" Margin="12,24,12,0" 
+                                VerticalAlignment="Center"
+                                HorizontalAlignment="Right"
+                                Visibility="Collapsed"
+                                Click="VoiceRecognitionButton_Click">
+                            <ImageBrush ImageSource="/Toolkit.Content/microphone.png" Stretch="Fill"/>
+                        </Button>
+                        <toolkit:SpeechTextBox x:Name="Notes" 
                                               Text="{Binding Notes, Mode=TwoWay}"
                                               Hint="{Binding LocalizedResources.HintWriteNotes, Source={StaticResource LocalizedStrings}}"
                                               TextWrapping="Wrap"
